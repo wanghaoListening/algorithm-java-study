@@ -32,11 +32,13 @@ public class TailToHeadPrintLinke {
         ListNode listNode = new ListNode(1,listNode2);
 
         ListNode linkNode = printListFromTailToHeadeByHInsert(listNode);
+
+        linkNode = linkNode.getNext();
         while (Objects.nonNull(linkNode)){
 
             System.out.println(linkNode.getValue());
 
-            linkNode = listNode.getNext();
+            linkNode = linkNode.getNext();
 
         }
         //System.out.println(printListFromTailToHeadeByRcursion(listNode));
@@ -71,17 +73,17 @@ public class TailToHeadPrintLinke {
 
         //初始一个空的节点
         ListNode listNodeEmpty = new ListNode();
-        ListNode tempNode = listNode;
-        while (Objects.nonNull(tempNode)){
+        while (Objects.nonNull(listNode)){
+
+            ListNode tempNode = new ListNode(listNode.getValue(),null);
             if(Objects.isNull(listNodeEmpty.getNext())){
                 //直接插入
-                listNodeEmpty.setNext(listNode);
+                listNodeEmpty.setNext(tempNode);
             }else{
                 //说明已经有节点插入
-                listNode.setNext(listNodeEmpty.getNext());
-                listNodeEmpty.setNext(listNode);
+                tempNode.setNext(listNodeEmpty.getNext());
+                listNodeEmpty.setNext(tempNode);
             }
-
             listNode = listNode.getNext();
         }
 
@@ -119,6 +121,14 @@ public class TailToHeadPrintLinke {
 
         public void setNext(ListNode next) {
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return "ListNode{" +
+                    "value=" + value +
+                    ", next=" + next +
+                    '}';
         }
     }
 
