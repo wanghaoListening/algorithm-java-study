@@ -3,6 +3,7 @@ package com.haothink;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Stack;
 
 /**
  * @author wanghao
@@ -88,6 +89,20 @@ public class TailToHeadPrintLinke {
         }
 
         return listNodeEmpty;
+    }
+
+
+    public ArrayList<Integer> printListFromTailToHeadByStack(ListNode listNode) {
+        Stack<Integer> stack = new Stack<>();
+        while (listNode != null) {
+            stack.add(listNode.value);
+            listNode = listNode.next;
+        }
+        ArrayList<Integer> ret = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            ret.add(stack.pop());
+        }
+        return ret;
     }
 
 
