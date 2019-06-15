@@ -16,4 +16,57 @@ package com.haothink;
 public class RebuildBinaryTree {
 
 
+    public static void main(String[] args) {
+
+        int[] preOrder = {3,9,20,15,7};
+        int[] middleOrder = {9,3,15,20,7};
+
+
+
+    }
+
+
+    private static class TreeNode{
+
+        int value;
+        TreeNode left;
+        TreeNode right;
+
+        public TreeNode() {
+        }
+
+        public TreeNode(int value) {
+            this.value = value;
+        }
+
+        public TreeNode(int value, TreeNode left, TreeNode right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+
+        public TreeNode getLeft() {
+            return left;
+        }
+
+        public void setLeft(TreeNode left) {
+            this.left = left;
+        }
+
+        public TreeNode getRight() {
+            return right;
+        }
+
+        public void setRight(TreeNode right) {
+            this.right = right;
+        }
+    }
 }
