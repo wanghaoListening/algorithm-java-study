@@ -33,11 +33,12 @@ public class SelectBinaryTreeNode {
 
             TreeNode leftNode = currentNode.right.left;
             while (Objects.nonNull(leftNode)){
-                leftNode = leftNode.left;
                 if(Objects.isNull(leftNode.left)){
                     return leftNode;
                 }
+                leftNode = leftNode.left;
             }
+            return null;
         }
 
         TreeNode parantNode = currentNode.parent;
