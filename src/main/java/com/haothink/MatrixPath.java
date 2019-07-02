@@ -63,8 +63,9 @@ public class MatrixPath {
      */
     public static boolean hasPath(char[][] chs,int row,int column,char[] str){
 
-
+        return false;
     }
+
 
     public static void backTrack(){
 
