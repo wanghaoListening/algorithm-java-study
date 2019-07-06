@@ -20,13 +20,12 @@ public class CutRope {
 
 
     public static void main(String[] args) {
-        System.out.println(cutRope1(8));
-        System.out.println(cutRope1(5));
         System.out.println(cutRope1(10));
+        System.out.println(cutRope2(10));
     }
     /**
      *
-     * @param n
+     * @param length
      *    绳子长度
      * @return
      *    长度乘积最大值
@@ -39,20 +38,20 @@ public class CutRope {
      * 情况下，将绳子剪成一段为 2 或者 3，得到的乘积会更大。又因为 3(n - 3) - 2(n - 2) = n - 5 >= 0，所
      * 以剪成一段长度为 3 比长度为 2 得到的乘积更大。
      */
-    private static int cutRope1(int n){
+    private static int cutRope1(int length){
 
-        if(1 == n) {
+        if(1 == length) {
+            return 0;
+        }else if(2 == length){
             return 1;
-        }else if(2 == n){
+        }else if(3 == length){
             return 2;
-        }else if(3 == n){
-            return 2;
-        }else if(4 == n){
+        }else if(4 == length){
             return 4;
         }
 
-        int timeOfThree = n/3;
-        int remainderNum = n%3;
+        int timeOfThree = length/3;
+        int remainderNum = length%3;
         int multiNum = 1;
         if(1 == remainderNum){
             timeOfThree -=1;
@@ -67,4 +66,54 @@ public class CutRope {
 
         return multiNum;
     }
+
+    /**
+     * 动态规划
+     * @param length
+     *       绳子长度
+     * @return
+     *
+     *
+     * 首先定义函数f(n)为把长度为n的绳子剪成若干段后各段长度乘积的最大值。在剪第一刀时，我们有n-1种选择，
+     * 也就是说第一段绳子的可能长度分别为1,2,3.....，n-1。因此f(n)=max(f(i)*f(n-i))，其中0<i<n。
+     * 这是一个自上而下的递归公式。由于递归会有大量的不必要的重复计算。一个更好的办法是按照从下而上的顺序
+     * 计算，也就是说我们先得到f(2),f(3)，再得到f(4),f(5)，直到得到f(n)。
+     *
+     */
+    private static int cutRope2(int length){
+
+        if(1 == length) {
+            return 0;
+        }else if(2 == length){
+            return 1;
+        }else if(3 == length){
+            return 2;
+        }else if(4 == length){
+            return 4;
+        }
+
+        //0位置不存储数据，绳子没有0长度的情况
+        int[] nums = new int[length+1];
+        nums[1] = 1;
+        nums[2] = 2;
+        nums[3] = 3;
+        nums[4] = 4;
+
+        for(int i=5;i<nums.length;i++){
+            int max = 0;
+            for(int j=1;j<=i/2;j++){
+
+                int temp = nums[j] * nums[i-j];
+
+                if(temp > max){
+                    max = temp;
+                }
+            }
+            nums[i] = max;
+        }
+
+        return nums[length];
+    }
+
+
 }
