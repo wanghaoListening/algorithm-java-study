@@ -12,19 +12,14 @@ package com.haothink;
 public class DigitalSequencePrint {
 
 
+
+
     public static void main(String[] args) {
 
-        printToMaxOfNDigits(18);
+        printToMaxOfNDigitsByChar(4);
     }
 
-    private static void printToMaxOfNDigits(int n){
 
-        if(n <= 18){
-
-            printToMaxOfNDigitsByLong(n);
-        }
-
-    }
 
 
     private static void printToMaxOfNDigitsByLong(int n){
@@ -39,10 +34,45 @@ public class DigitalSequencePrint {
         }
     }
 
+
+    /**
+     * 我们发现数的每一位都是0到9，所以可以利用全排列的思想，凭借递归的优雅实现达到目的
+     * @param n
+     *       整数的位数
+     */
     private static void printToMaxOfNDigitsByChar(int n){
 
-
+        if(n <= 0) {
+            return;
+        }
+        char[] nums = new char[n];
+        recursiveProductNum(0, n, nums);
     }
+
+    private static void recursiveProductNum(int index, int length, char[] nums) {
+        if(index == length) {
+            printNum(nums);
+            return;
+        }
+        for(char i = '0'; i <= '9'; i++){
+            nums[index] = i;
+            recursiveProductNum(index + 1, length, nums);
+        }
+    }
+
+    private static void printNum(char[] nums) {
+        int index = 0;
+        for(; index < nums.length; index++) {
+            if(nums[index] != '0'){
+                break;
+            }
+        }
+        for(; index < nums.length; index++) {
+            System.out.print(nums[index]);
+        }
+        System.out.println();
+    }
+
 }
 
 
