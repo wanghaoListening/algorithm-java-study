@@ -11,9 +11,17 @@ import java.util.Objects;
  *
  * 在链表中删除一个结点，最常规的做法是从链表的头结点开始，顺序查找要删除的结点，找到之后再删除。由于需要顺序查找，时间复杂度自然就是O(n) 了。
  *
- * 我们之所以需要从头结点开始查找要删除的结点，是因为我们需要得到要删除的结点的前面一个结点。我们试着换一种思路。我们可以从给定的结点得到它的下一个结点。这个时候我们实际删除的是它的下一个结点，由于我们已经得到实际删除的结点的前面一个结点，因此完全是可以实现的。当然，在删除之前，我们需要需要把给定的结点的下一个结点的数据拷贝到给定的结点中。此时，时间复杂度为O(1)。
+ * 我们之所以需要从头结点开始查找要删除的结点，是因为我们需要得到要删除的结点的前面一个结点。我们试着换一种思路。我们可以从给定的结点得到它的下一个结点。
+ * 这个时候我们实际删除的是它的下一个结点，由于我们已经得到实际删除的结点的前面一个结点，因此完全是可以实现的。当然，在删除之前，我们需要需要把给定的结
+ * 点的下一个结点的数据拷贝到给定的结点中。此时，时间复杂度为O(1)。
  *
- * 上面的思路还有一个问题：如果删除的结点位于链表的尾部，没有下一个结点，怎么办？我们仍然从链表的头结点开始，顺便遍历得到给定结点的前序结点，并完成删除操作。这个时候时间复杂度是O(n)。那题目要求我们需要在O(1)时间完成删除操作，我们的算法是不是不符合要求？实际上，假设链表总共有n个结点，我们的算法在n-1总情况下时间复杂度是O(1)，只有当给定的结点处于链表末尾的时候，时间复杂度为O(n)。那么平均时间复杂度[(n-1)*O(1)+O(n)]/n，仍然为O(1)。
+ * 上面的思路还有一个问题：如果删除的结点位于链表的尾部，没有下一个结点，怎么办？我们仍然从链表的头结点开始，顺便遍历得到给定结点的前序结点，并完成删除
+ * 操作。这个时候时间复杂度是O(n)。那题目要求我们需要在O(1)时间完成删除操作，我们的算法是不是不符合要求？实际上，假设链表总共有n个结点，我们的算法在n-1总
+ * 情况下时间复杂度是O(1)，只有当给定的结点处于链表末尾的时候，时间复杂度为O(n)。那么平均时间复杂度[(n-1)*O(1)+O(n)]/n，仍然为O(1)。
+ *
+ * [6]->[3]->[8]->[5]
+ *
+ * [6]->[3]->[5]
  */
 public class DeleteLinkedNode {
 
@@ -25,21 +33,13 @@ public class DeleteLinkedNode {
         LinkedNode linkedNode3 = new LinkedNode(3,linkedNode2);
         LinkedNode linkedNode4 = new LinkedNode(6,linkedNode3);
         LinkedNode head = linkedNode4;
-        LinkedNode p = linkedNode;
-        printLinkedNode(head,"pre");
+        LinkedNode p = linkedNode2;
+        LinkedNode.printLinkedNode(head,"pre");
 
         head = deleteNode(head,p);
-        printLinkedNode(head,"after");
+        LinkedNode.printLinkedNode(head,"after");
 
 
-    }
-
-    private static void printLinkedNode(LinkedNode linkedNode,String flag){
-
-        while (Objects.nonNull(linkedNode)){
-            System.out.println(flag+linkedNode.value);
-            linkedNode = linkedNode.next;
-        }
     }
 
 
@@ -78,31 +78,5 @@ public class DeleteLinkedNode {
     }
 
 
-    private static class LinkedNode{
 
-        int value;
-
-        LinkedNode next;
-
-        public LinkedNode(int value, LinkedNode next) {
-            this.value = value;
-            this.next = next;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        public LinkedNode getNext() {
-            return next;
-        }
-
-        public void setNext(LinkedNode next) {
-            this.next = next;
-        }
-    }
 }
