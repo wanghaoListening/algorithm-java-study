@@ -1,5 +1,7 @@
 package com.haothink;
 
+import java.util.Objects;
+
 /**
  * @author wanghao
  * @date 2019年07月09日 21:01
@@ -16,6 +18,91 @@ package com.haothink;
 public class DeleteLinkedNode {
 
 
+    public static void main(String[] args) {
+
+        LinkedNode linkedNode = new LinkedNode(5,null);
+        LinkedNode linkedNode2 = new LinkedNode(8,linkedNode);
+        LinkedNode linkedNode3 = new LinkedNode(3,linkedNode2);
+        LinkedNode linkedNode4 = new LinkedNode(6,linkedNode3);
+        LinkedNode head = linkedNode4;
+        LinkedNode p = linkedNode;
+        printLinkedNode(head,"pre");
+
+        head = deleteNode(head,p);
+        printLinkedNode(head,"after");
 
 
+    }
+
+    private static void printLinkedNode(LinkedNode linkedNode,String flag){
+
+        while (Objects.nonNull(linkedNode)){
+            System.out.println(flag+linkedNode.value);
+            linkedNode = linkedNode.next;
+        }
+    }
+
+
+    /**
+     *
+     * @param head
+     *        头指针
+     * @param p
+     *        节点指针
+     * @return
+     *        删除后的链表
+     */
+    private static LinkedNode deleteNode(LinkedNode head,LinkedNode p){
+
+        if(Objects.isNull(head) || Objects.isNull(p)){
+            return null;
+        }
+
+        if(Objects.nonNull(p.next)){
+            //证明不是尾节点
+            p.value = p.next.value;
+            p.next = p.next.next;
+            return head;
+        }
+
+        LinkedNode temp = head;
+        //如果是尾节点只能从头开始遍历
+        while (Objects.nonNull(temp.next) && (temp.next != p)){
+
+            temp = temp.next;
+        }
+
+        temp.next = null;
+        p = temp;
+        return head;
+    }
+
+
+    private static class LinkedNode{
+
+        int value;
+
+        LinkedNode next;
+
+        public LinkedNode(int value, LinkedNode next) {
+            this.value = value;
+            this.next = next;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+
+        public LinkedNode getNext() {
+            return next;
+        }
+
+        public void setNext(LinkedNode next) {
+            this.next = next;
+        }
+    }
 }
