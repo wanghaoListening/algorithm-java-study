@@ -41,11 +41,16 @@ public class HuSu {
         Scanner scan = new Scanner(System.in);
 
         String numOfExample = scan.nextLine();
-
-        for(int i=1;i<=Integer.parseInt(numOfExample);i++){
+        int[] params = new int[Integer.parseInt(numOfExample)];
+        for(int i=0;i<Integer.parseInt(numOfExample);i++){
             String line = scan.nextLine();
-            int balls = hint(Integer.parseInt(line));
-            System.out.println("Case #"+i+":"+balls);
+            params[i] = Integer.parseInt(line);
+
+        }
+
+        for(int i=0;i<params.length;i++){
+            int balls = hint(params[i]);
+            System.out.println("Case #"+(i+1)+":"+balls);
         }
     }
 
