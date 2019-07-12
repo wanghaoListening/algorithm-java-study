@@ -1,4 +1,4 @@
-package com.haothink;
+package com.haothink.jzoffer;
 
 import java.util.ArrayList;
 import java.util.List;

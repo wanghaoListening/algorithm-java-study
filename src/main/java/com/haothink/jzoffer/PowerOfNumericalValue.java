@@ -1,4 +1,4 @@
-package com.haothink;
+package com.haothink.jzoffer;
 
 /**
  * @author wanghao
