@@ -21,8 +21,8 @@ public class ChangePositionOfOddAndEven {
 
     public static void main(String[] args) {
 
-        int[] nums = {1,2,3,4,5};
-        System.out.println(Arrays.toString(changePosition2(nums)));
+        int[] nums = {1,2,3,4,5,6,8,10,11};
+        System.out.println(Arrays.toString(changePosition(nums)));
     }
 
     //创建一个新数组，时间复杂度 O(N)，空间复杂度 O(N)。
