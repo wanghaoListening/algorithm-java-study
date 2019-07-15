@@ -1,4 +1,7 @@
 package com.haothink.jzoffer;
+import	java.util.Arrays;
+import	java.util.Objects;
+
 
 /**
  * @author wanghao
@@ -15,6 +18,70 @@ package com.haothink.jzoffer;
  */
 public class ChangePositionOfOddAndEven {
 
+
+    public static void main(String[] args) {
+
+        int[] nums = {1,2,3,4,5};
+        System.out.println(Arrays.toString(changePosition2(nums)));
+    }
+
+    //创建一个新数组，时间复杂度 O(N)，空间复杂度 O(N)。
+    private static int[] changePosition(int[] nums){
+        if(Objects.isNull(nums) || 0 == nums.length){
+            return null;
+        }
+
+        int numberOfOdd = 0;
+
+        for(int num : nums){
+            if(num % 2 ==1){
+                numberOfOdd ++;
+            }
+        }
+
+        int oddStartIndex = 0;
+        int evenStartIndex = numberOfOdd;
+        int[] newNumArray = new int[nums.length];
+        for(int num : nums){
+
+            if(num % 2 ==1){
+                //奇数
+                newNumArray[oddStartIndex++] = num;
+            }else {
+                //偶数
+                newNumArray[evenStartIndex++] = num;
+            }
+        }
+        return newNumArray;
+
+    }
+
+
+    private static int[] changePosition2(int[] nums){
+        if(Objects.isNull(nums) || 0 == nums.length){
+            return null;
+        }
+
+
+        int temp = 0;
+        for(int i=0;i < nums.length-1; i++){
+
+            for(int j=0;j<nums.length-1-i; j++){
+
+                if (nums [j] % 2 == 0 && nums [j+1] % 2 == 1){
+                    //偶数
+                    //奇数,直接交换位置
+                    temp = nums[j];
+                    nums[j] = nums[j+1];
+                    nums[j+1] = temp;
+
+                }
+            }
+        }
+
+
+        return nums;
+    }
 
 
 }
