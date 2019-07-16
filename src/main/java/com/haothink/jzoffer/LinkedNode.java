@@ -44,4 +44,10 @@ public class LinkedNode {
         System.out.println();
     }
 
+    @Override
+    public String toString() {
+        return "LinkedNode{" +
+                "value=" + value +
+                '}';
+    }
 }
