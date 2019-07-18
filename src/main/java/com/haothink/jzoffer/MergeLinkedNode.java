@@ -1,5 +1,4 @@
 package com.haothink.jzoffer;
-import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -36,9 +35,8 @@ public class MergeLinkedNode {
 
         //LinkedNode newLinkedNode = merge(head1,head2);
 
-        LinkedNode headNode = new LinkedNode();
-        merge2(headNode,head1,head2);
-        LinkedNode.printLinkedNode(headNode,"new");
+
+        LinkedNode.printLinkedNode(merge2(head1,head2),"new");
     }
 
 
@@ -81,43 +79,22 @@ public class MergeLinkedNode {
         return newHead;
     }
 
-    //递归合并head1,head2
-    private static void merge2(LinkedNode currentNode,LinkedNode head1,LinkedNode head2){
+    //递归合并head1,head2,递归相对比较简单
+    private static LinkedNode merge2(LinkedNode head1,LinkedNode head2){
 
-        if(Objects.isNull(head1) && Objects.isNull(head2)){
-            return;
+        if (Objects.isNull(head1)) {
+            return head2;
         }
-        if(Objects.nonNull(head1) && Objects.isNull(head2)){
-            currentNode.next = head1;
-            return;
-
+        if (Objects.isNull(head2)) {
+            return head1;
         }
-        if(Objects.isNull(head1)){
-            currentNode.next = head2;
-            return;
+        if (head1.value <= head2.value) {
+            head1.next = merge2(head1.next, head2);
+            return head1;
+        } else {
+            head2.next = merge2(head1, head2.next);
+            return head2;
         }
-
-        if(head1.value < head2.value){
-            //小于
-            currentNode.next = head1;
-            currentNode = currentNode.next;
-            head1 = head1.next;
-        }else if(head1.value == head2.value){
-            //等于
-            currentNode.next = head1;
-            currentNode = currentNode.next;
-            head1 = head1.next;
-            currentNode.next = head2;
-            currentNode = currentNode.next;
-            head2 = head2.next;
-        }else{
-            //大于
-            currentNode.next = head2;
-            currentNode = currentNode.next;
-            head2 = head2.next;
-        }
-        merge2(currentNode,head1,head2);
-
     }
 
 }
