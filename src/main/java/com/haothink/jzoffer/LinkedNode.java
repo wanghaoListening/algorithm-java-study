@@ -13,6 +13,9 @@ public class LinkedNode {
 
     LinkedNode next;
 
+    public LinkedNode() {
+    }
+
     public LinkedNode(int value, LinkedNode next) {
         this.value = value;
         this.next = next;
