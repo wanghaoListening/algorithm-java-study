@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * @author wanghao
  * @date 2019年07月18日 21:13
- * description: 输入两棵二叉树A 和B，判断B 是不是A 的子结构。
+ * description: 输入两棵二叉树A和B，判断B是不是A 的子结构。
  *
  * 解题思路：
  * 要查找树A 中是否存在和树B 结构一样的子树，我们可以分成两步： 第一步在树A 中找到和B 的根结点的值一样的结点R，
