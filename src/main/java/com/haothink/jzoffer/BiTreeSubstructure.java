@@ -1,6 +1,6 @@
 package com.haothink.jzoffer;
+import java.util.*;
 
-import java.util.Objects;
 
 /**
  * @author wanghao
@@ -16,6 +16,30 @@ public class BiTreeSubstructure {
 
     public static void main(String[] args) {
 
+        TreeNode root1 = new TreeNode();
+        root1.value = 8;
+        root1.right = new TreeNode();
+        root1.right.value = 7;
+        root1.left = new TreeNode();
+        root1.left.value = 8;
+        root1.left.left = new TreeNode();
+        root1.left.left.value = 9;
+        root1.left.right = new TreeNode();
+        root1.left.right.value = 2;
+        root1.left.right.left = new TreeNode();
+        root1.left.right.left.left = new TreeNode();
+        root1.left.right.left.left.value = 4;
+        root1.left.right.left.right = new TreeNode();
+        root1.left.right.left.right.value = 7;
+        TreeNode root2 = new TreeNode();
+        root2.value = 8;
+        root2.left = new TreeNode();
+        root2.left.value = 9;
+        root2.right = new TreeNode();
+        root2.right.value = 2;
+        System.out.println(isSubstructure(root1, root2));
+        System.out.println(isSubstructure(root2, root1));
+        System.out.println(isSubstructure(root1, root1.left));
     }
 
     private static boolean isSubstructure(TreeNode aRoot,TreeNode bRoot){
@@ -24,37 +48,52 @@ public class BiTreeSubstructure {
             return false;
         }
 
-        TreeNode treeNode = findTreeNodebyPreOrder(aRoot,bRoot);
-        if(Objects.isNull(treeNode)){
+        List<TreeNode> treeNodeList = findTreeNodebyLevelOrder(aRoot,bRoot);
+        if(Objects.isNull(treeNodeList) || treeNodeList.isEmpty()){
             return false;
         }
+        boolean isExist = false;
 
-        return compareTreeNodebyPreOrder(treeNode,bRoot);
+        for(TreeNode treeNode:treeNodeList){
+            if(compareTreeNodebyPreOrder(treeNode,bRoot)){
+                isExist = true;
+                break;
+            }
+        }
+
+        return isExist;
     }
 
 
     /**
-     * 递归先序遍历查找节点
+     *
+     * 按层级遍历查找节点
      * @param aRoot
      * @param bRoot
      * @return
-     *        返回存在的节点
+     *        由于A树种可能存在不止一个节点与B数根节点值相等
+     *        返回与bRoot值相等的A树的节点列表
      */
-    private static TreeNode findTreeNodebyPreOrder(TreeNode aRoot,TreeNode bRoot){
+    private static List<TreeNode> findTreeNodebyLevelOrder(TreeNode aRoot,TreeNode bRoot){
+        List<TreeNode> treeNodeList = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(aRoot);
+        TreeNode firstNode = queue.poll();
+        while (Objects.nonNull(firstNode)){
 
-        if(Objects.nonNull(aRoot)){
-
-            if(aRoot.value == bRoot.value){
-                return aRoot;
+            if(firstNode.value == bRoot.value){
+                treeNodeList.add(firstNode);
             }
-            if(Objects.nonNull(aRoot.left)) {
-                return findTreeNodebyPreOrder(aRoot.left, bRoot);
+            if(Objects.nonNull(firstNode.left)) {
+                queue.offer(firstNode.left);
             }
-            if(Objects.nonNull(aRoot.right)) {
-                return findTreeNodebyPreOrder(aRoot.right, bRoot);
+            if(Objects.nonNull(firstNode.right)) {
+                queue.offer(firstNode.right);
             }
+            firstNode = queue.poll();
         }
-        return null;
+
+        return treeNodeList;
     }
 
     /**
@@ -75,8 +114,8 @@ public class BiTreeSubstructure {
             }
 
         }
-
-        return Objects.isNull(aRoot) && Objects.isNull(bRoot);
+        //证明B树的节点已经全部比较完成
+        return Objects.isNull(bRoot);
 
     }
 
