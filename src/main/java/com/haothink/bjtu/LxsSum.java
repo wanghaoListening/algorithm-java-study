@@ -1,5 +1,7 @@
 package com.haothink.bjtu;
 
+import java.util.Scanner;
+
 /**
  * @author wanghao
  * @date 2019年07月12日 17:56
@@ -23,16 +25,57 @@ package com.haothink.bjtu;
  * Case #1: 1
  * Case #2: 3
  *
- * https://blog.csdn.net/mengtech/article/details/1961799
+ * https://blog.csdn.net/lsjweiyi/article/details/63684123
  */
 public class LxsSum {
 
 
     public static void main(String[] args) {
 
+
+        Scanner scan = new Scanner(System.in);
+
+        String numOfExample = scan.nextLine();
+        int[] params = new int[Integer.parseInt(numOfExample)];
+        for(int i=0;i<Integer.parseInt(numOfExample);i++){
+            String line = scan.nextLine();
+            params[i] = Integer.parseInt(line);
+
+        }
+
+        for(int i=0;i<params.length;i++){
+            int balls = arithmeticSquence(params[i]);
+            System.out.println("Case #"+(i+1)+": "+balls);
+        }
+
     }
 
 
+    private static int arithmeticSquence(int n){
 
+        //用来作为记录有多少组连续整数，也用来在输出连续整数时添加逗号的标记
+        int count=0;
+        //i表示该整数由i个连续整数相加
+        for(int i=2;i<=n/2+1;i++){
+
+            //当该整数由i个连续整数相加时，这些连续整数的最小值的表达式
+            int value=n/i-(i-1)/2;
+
+            //最小取1
+            if(value<1) {
+                break;
+            }
+            //等差数列，首相加末项乘以项数除以2
+            int temp=(value+value+i-1)*i/2;
+            //成功找到连续整数
+            if(temp==n){
+                //记录有多少组连续整数组
+                count++;
+            }
+        }
+        return count;
+    }
 
 }
+
+
