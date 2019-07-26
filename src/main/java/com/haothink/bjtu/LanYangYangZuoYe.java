@@ -1,6 +1,6 @@
 package com.haothink.bjtu;
 
-import java.util.Arrays;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -41,7 +41,7 @@ public class LanYangYangZuoYe {
         String[] lines = new String [Integer.parseInt(numOfExample)];
         for(int i=0;i<Integer.parseInt(numOfExample);i++){
             String line = scan.nextLine();
-            lines[i] = line.substring(2);
+            lines[i] = line.substring(line.indexOf(' ')+1);
         }
 
         for(int i=0;i<lines.length;i++){
@@ -51,7 +51,7 @@ public class LanYangYangZuoYe {
                 nums[j] = Integer.parseInt(chs[j]);
             }
             int[] sortNums = lanSort(nums);
-            System.out.print("Case #"+(i+1));
+            System.out.print("Case #"+(i+1)+":");
             for(int j=0;j < sortNums.length;j++){
                 System.out.print(" "+sortNums[j]);
             }
@@ -73,27 +73,42 @@ public class LanYangYangZuoYe {
         //向后
         for(int i=1;i<nums.length;i++){
 
-            if(bigTemp > nums[i]){
+            if(bigTemp < nums[i]){
                 bigTemp = nums[i];
                 bigIndex = i;
             }
 
-            if(smallTemp < nums[i]){
+            if(smallTemp > nums[i]){
                 smallTemp = nums[i];
                 smallIndex = i;
             }
         }
-        if(bigIndex > 0 ){
-            bigTemp = nums[nums.length-1];
-            nums[nums.length-1] = nums[bigIndex];
+
+        if(smallIndex == 0 && bigIndex == nums.length-1){
+            int temp = nums[0];
+            nums[0] = nums[nums.length-1];
+            nums[nums.length-1] = temp;
+            return nums;
+        }
+        if(smallIndex == 0 && bigIndex >0){
+            smallTemp = nums[nums.length-1];
+            nums[nums.length-1] = nums[smallIndex];
+            nums[smallIndex] = smallTemp;
+            bigTemp = nums[0];
+            nums[0] = nums[bigIndex];
             nums[bigIndex] = bigTemp;
+            return nums;
         }
 
-        if(smallIndex < nums.length-1){
-            smallTemp = nums[0];
-            nums[0] = nums[smallIndex];
-            nums[smallIndex] = smallTemp;
-        }
+        bigTemp = nums[0];
+        nums[0] = nums[bigIndex];
+        nums[bigIndex] = bigTemp;
+
+
+        smallTemp = nums[nums.length-1];
+        nums[nums.length-1] = nums[smallIndex];
+        nums[smallIndex] = smallTemp;
+
 
         return nums;
     }
