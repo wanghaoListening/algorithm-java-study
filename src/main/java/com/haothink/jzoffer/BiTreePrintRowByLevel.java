@@ -11,6 +11,12 @@ import java.util.Queue;
  *
  * 描述:
  * 从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
+ * 
+ * 解题思路：
+ * 
+ * 初始化两个队列，oddQueue，evenQueue ，oddQueue队列的孩子节点放入evenQueue，然后遍历evenQueue，evenQueue队列的孩子节点放入oddQueue队列，然后遍历
+ * oddQueue，重复上述过程交叉打印两个队列的节点即可
+ *
  *
  *
  */
@@ -49,12 +55,12 @@ public class BiTreePrintRowByLevel {
             return;
         }
 
-        Queue<TreeNode> oddQuene = new LinkedList<>();
-        Queue<TreeNode> evenQuene = new LinkedList<>();
+        Queue<TreeNode> oddQueue = new LinkedList<>();
+        Queue<TreeNode> evenQueue = new LinkedList<>();
         
         
-        oddQuene.offer(root);
-        Queue<TreeNode> queue = oddQuene;
+        oddQueue.offer(root);
+        Queue<TreeNode> queue = oddQueue;
         
         int count = 1;
         
@@ -68,18 +74,18 @@ public class BiTreePrintRowByLevel {
                 System.out.print(treeNode.value+" ");
                 if(count % 2 == 0){
                     if(Objects.nonNull(treeNode.left)){
-                        evenQuene.offer(treeNode.left);
+                        evenQueue.offer(treeNode.left);
                     }
                     if(Objects.nonNull(treeNode.right)){
-                        evenQuene.offer(treeNode.right);
+                        evenQueue.offer(treeNode.right);
                     }
                     
                 }else {
                     if(Objects.nonNull(treeNode.left)){
-                        oddQuene.offer(treeNode.left);
+                        oddQueue.offer(treeNode.left);
                     }
                     if(Objects.nonNull(treeNode.right)){
-                        oddQuene.offer(treeNode.right);
+                        oddQueue.offer(treeNode.right);
                     }
                 }
 
@@ -87,7 +93,7 @@ public class BiTreePrintRowByLevel {
 
             System.out.println();
             
-            queue = count % 2 == 0?evenQuene:oddQuene;
+            queue = count % 2 == 0?evenQueue:oddQueue;
         }
         
     }
