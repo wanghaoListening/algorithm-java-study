@@ -65,7 +65,7 @@ public class SmallACard{
 
 
 
-    private static final ExecutorService cachedThreadPool = Executors.newFixedThreadPool(16);
+    private static final ExecutorService cachedThreadPool = Executors.newFixedThreadPool(30);
 
     private static final Map<Integer,Position> positions = Collections.synchronizedMap(new TreeMap<>());
 
@@ -153,7 +153,7 @@ public class SmallACard{
 
         @Override
         public String toString() {
-            return (-1 == x || -1 == y) ? "-1" : (x+" "+y);
+            return (-1 != x) ? (x+" "+y) : "-1";
         }
     }
 }
