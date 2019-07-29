@@ -8,12 +8,12 @@ import java.util.Objects;
  * description: 二叉搜索树的后序遍历序列
  *
  * 题目描述：
- * 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同。
- * 例如，下图是后序遍历序列 1,3,2 所对应的二叉搜索树。
+ * 输入一个整数数组,判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同。
+ * 例如,下图是后序遍历序列 1,3,2 所对应的二叉搜索树。
  *
  * 解题思路：
- * BST的后序序列的合法序列是，对于一个序列S，最后一个元素是x （也就是根），如果去掉最后一个元素的序列为T，那么T满足：
- * T可以分成两段，前一段（左子树）小于x，后一段（右子树）大于x，且这两段（子树）都是合法的后序序列。
+ * BST的后序序列的合法序列是,对于一个序列S,最后一个元素是x （也就是根）,如果去掉最后一个元素的序列为T,那么T满足：
+ * T可以分成两段,前一段（左子树）小于x,后一段（右子树）大于x,且这两段（子树）都是合法的后序序列。
  *
  *
  */
@@ -22,7 +22,7 @@ public class BiTreePostOrderSequence {
 
     public static void main(String[] args) {
 
-        int[] sequence = {11,7,6,9,11,10,8};
+        int[] sequence = {1,4,7,6,3,13,14,10,8};
         System.out.println(verifySquenceOfBST(sequence));
     }
 
@@ -44,9 +44,9 @@ public class BiTreePostOrderSequence {
         //取根节点
         int root = sequence[end];
 
-        int middleIndex = 0;
+        int middleIndex = start;
         //寻找左右子树的分界
-        while (middleIndex <= end && sequence[middleIndex] <= root){
+        while (middleIndex < end && sequence[middleIndex] <= root){
             middleIndex++;
         }
 
