@@ -65,9 +65,13 @@ public class XuanKe {
                 group.putClassNum(subjectNums[3]);
                 group.putClassNum(subjectNums[4]);
             }
+            groups[i] = group;
         }
 
 
+        for(Group group : groups){
+            System.out.println(group.statisticSubject());
+        }
 
 
     }
@@ -91,8 +95,24 @@ public class XuanKe {
             classMap.put(classNum,1);
         }
 
+        public String statisticSubject(){
 
+            int count = 0;
+
+            for(Integer num : classMap.values()){
+                if((num*100)/peoples > percent){
+                    count ++;
+                }
+            }
+
+            if(count >= 3){
+                return "yes";
+            }
+            return "no";
+        }
 
     }
+
+
 
 }
