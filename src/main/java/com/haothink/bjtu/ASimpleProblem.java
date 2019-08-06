@@ -1,5 +1,9 @@
 package com.haothink.bjtu;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * @author wanghao
  * @date 2019年08月06日 20:27
@@ -39,7 +43,31 @@ public class ASimpleProblem {
 
     public static void main(String[] args) {
 
+        Scanner scan = new Scanner(System.in);
+        int groupCount = Integer.parseInt(scan.nextLine());
+        List<Integer> results = new ArrayList<>(groupCount);
+
+        for(int i=0;i<groupCount;i++){
+
+            int n = Integer.valueOf(scan.nextLine());
+
+            int count =0;
+            for(int j=0;j<=n;j++){
+
+                if(((2 * j) ^ (3 * j)) == j){
+                    count ++;
+                }
+            }
+            results.add(count);
+
+        }
+
+        for(int i=0;i<results.size();i++){
+            System.out.println("Case #"+(i+1)+": "+results.get(i));
+        }
+
     }
+
 
 
 
