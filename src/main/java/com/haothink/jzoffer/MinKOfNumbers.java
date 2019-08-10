@@ -22,4 +22,8 @@ public class MinKOfNumbers {
     }
 
 
+    private static int[] getLeastNumbers(int[] nums){
+
+        return null;
+    }
 }
