@@ -1,5 +1,7 @@
 package com.haothink.jzoffer;
 
+import java.util.Arrays;
+
 /**
  * @author wanghao
  * @date 2019年08月10日 23:20
@@ -19,11 +21,47 @@ public class MinKOfNumbers {
 
     public static void main(String[] args) {
 
+        int[] nums = {4,5,1,6,2,7,3,8};
+        quickSort(nums,0,nums.length-1,4);
+        System.out.println(Arrays.toString(nums));
+
     }
 
 
-    private static int[] getLeastNumbers(int[] nums){
 
-        return null;
+    private static void quickSort(int[] nums,int startIndex,int endIndex,int k){
+
+        if(startIndex > endIndex){
+            return;
+        }
+
+        int shiftNum = nums[startIndex];
+        int lowIndex = startIndex,highIndex = endIndex;
+
+        while (startIndex < endIndex){
+
+            while (nums[endIndex] >= shiftNum && startIndex < endIndex){
+                endIndex --;
+            }
+            while (nums[startIndex] <= shiftNum && startIndex < endIndex){
+                startIndex ++;
+            }
+            if(startIndex < endIndex){
+                int temp = nums[endIndex];
+                nums[endIndex] = nums[startIndex];
+                nums[startIndex] = temp;
+            }
+
+        }
+        //将基准位置的数值放到两个列表中点位置
+        nums[lowIndex] = nums[startIndex];
+        nums[startIndex] = shiftNum;
+        if(k == (startIndex+1)){
+            //证明前k个数以及是最小的k个数了,则停止继续快排序
+            return;
+        }
+        quickSort(nums,lowIndex,startIndex-1,k);
+        quickSort(nums,startIndex+1,highIndex,k);
+
     }
 }
