@@ -24,7 +24,6 @@ public class FrequencyOfOneNumFromOneToN {
         System.out.println(numberOfOne(12));
     }
 
-
     private static int numberOfOne(int number){
 
         int count = 0;
