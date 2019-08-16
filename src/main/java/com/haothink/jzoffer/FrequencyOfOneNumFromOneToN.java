@@ -3,7 +3,7 @@ package com.haothink.jzoffer;
 /**
  * @author wanghao
  * @date 2019年08月14日 21:14
- * description: 从 1 到 n 整数中 1 出现的次数
+ * description: 从1到n整数中1出现的次数
  *
  * 题目描述：
  * 输入一个整数n，求1~n这n个整数的十进制表示中1出现的次数。
