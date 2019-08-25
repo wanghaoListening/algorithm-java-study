@@ -56,7 +56,6 @@ public class MaximumValueOfGifts {
                 if (j > 0) {
                     fromUp = maxValues[i][j - 1];
                 }
-
                 maxValues[i][j] = Math.max(fromLeft, fromUp) + matrix[i][j];
                 System.out.println("maxValue"+maxValues[i][j]);
             }
