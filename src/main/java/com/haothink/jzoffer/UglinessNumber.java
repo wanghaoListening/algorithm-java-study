@@ -20,6 +20,6 @@ public class UglinessNumber {
 
     private static int getUglyNumberSolution(int n){
 
-
+        return 0;
     }
 }
