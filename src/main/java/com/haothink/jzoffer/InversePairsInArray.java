@@ -11,9 +11,14 @@ package com.haothink.jzoffer;
  *
  * 解题思路：
  *
+ * 1.第一种比较容易想到的方法是逐个元素遍历跟后面的元素进行比较，由于每个数字都要和O(n)个数字作比较，因此这个算法的时间复杂度是O(n^2)
+ *
+ * 2.利用归并排序的思想，首先将
+ *
  */
 public class InversePairsInArray {
 
+    private static int counter = 0;
 
     public static void main(String[] args) {
 
@@ -40,6 +45,22 @@ public class InversePairsInArray {
 
     private static int getInversePairs2(int[] nums){
 
+        
         return 0;
     }
+
+    private static void merge(int[] nums,int stepLength){
+
+        if(stepLength >= nums.length){
+            return;
+        }
+        int stepCount = (nums.length%stepLength==0)?nums.length/stepLength:nums.length/stepLength+1;
+        int startIndex = 0;
+        int endIndex = startIndex+stepLength-1;
+        for(int i=1;i<=stepCount;i++){
+
+
+        }
+    }
+
 }
