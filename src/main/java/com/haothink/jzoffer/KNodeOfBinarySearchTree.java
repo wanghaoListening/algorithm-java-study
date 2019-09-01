@@ -12,7 +12,6 @@ package com.haothink.jzoffer;
  * 如图：http://wanghao-github-blog.test.upcdn.net/upaiyun/swordoffer/bst-bitree.png，第三个节点为4
  *
  *
- *
  * 解题思路：
  * 由于二叉搜索树的中序序列是一个有序的序列，所以按照中序序列遍历过程进行节点统计即可。
  *
@@ -62,7 +61,6 @@ public class KNodeOfBinarySearchTree {
         node8.right = node10;
 
         System.out.println(getKTreeNode(node8,4).getValue());
-
 
     }
 
