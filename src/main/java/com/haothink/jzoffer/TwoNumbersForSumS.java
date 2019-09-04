@@ -50,7 +50,7 @@ public class TwoNumbersForSumS {
             }
         }
 
-        return new int[]{num[preHead],num[preTail]};
+        return sum > 0 ?new int[]{num[preHead],num[preTail]}:new int[]{};
     }
 
 }
