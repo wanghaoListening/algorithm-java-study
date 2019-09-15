@@ -23,6 +23,7 @@ public class PokerShunzi {
 
         System.out.println(isContinuous(new int[]{3,0,1,5,4}));
 
+        System.out.println(isContinuous(new int[]{4,2,1,6,7}));
     }
 
 
@@ -40,16 +41,14 @@ public class PokerShunzi {
                 leperCount ++;
             }else{
 
-                if(preNum !=0 && num-preNum == 1){
-                    continue;
+                if(preNum !=0) {
+                    leperCount = leperCount - (num - preNum - 1);
+                    if (leperCount < 0) {
+                        return false;
+                    }
                 }
 
-                int spetCount = leperCount - (num - preNum - 1);
-                if (spetCount < 0) {
-                    return false;
-                }
                 preNum = num;
-                leperCount = spetCount;
             }
         }
         return true;
