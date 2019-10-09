@@ -1,8 +1,6 @@
 package com.haothink.bjtu;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author wanghao
@@ -30,21 +28,46 @@ import java.util.Scanner;
  * 1 3 2
  */
 public class QuanPaiLie {
-    private static int m=0;
+    private static int global_m=0;
     private static int counter = 1;
     public static void main(String[] args) {
 
         Scanner input=new Scanner(System.in);
         String[] strs = input.nextLine().split(" ");
         int n=Integer.parseInt(strs[0]);
-        m=Integer.parseInt(strs[1]);
-        int[] num = new int[n];
-        for(int i=0;i<n;i++){
-            num[i] = i+1;
-        }
-        permutation(num);
+        int m=Integer.parseInt(strs[1]);
+        getPermutation(n,m);
 
     }
+
+    //非递归，全排列
+    private static void getPermutation(int n,int m){
+
+        List<Integer> sums = new ArrayList<>(n);
+        List<Integer> nums = new ArrayList<>(n);
+        int sum = 1;
+        sums.add(1);
+        for(int i=1;i<=n;i++){
+            sum*=i;
+            sums.add(sum);
+            nums.add(i);
+        }
+
+        m--;
+        List<Integer> results = new ArrayList<>();
+
+        for(int i=1;i<=n;i++){
+            int index = m/sums.get(n-i);
+            results.add(nums.get(index));
+            nums.remove(nums.get(index));
+            m = m % sums.get(n-i);
+        }
+        for(int ele:results){
+            System.out.print(ele+" ");
+        }
+    }
+
+
 
     private static void permutation(int[] num){
         if(Objects.isNull(num) || num.length == 0){
@@ -53,11 +76,13 @@ public class QuanPaiLie {
         printNumArrange(num,0);
     }
 
+
+
     private static void printNumArrange(int[] num,int offset){
         if(offset == num.length-1){
             return;
         }
-        if(offset == 0 && m == 1){
+        if(offset == 0 && global_m == 1){
             System.out.println(Arrays.toString(num)
                     .replace("[","")
                     .replace(",","")
@@ -72,7 +97,7 @@ public class QuanPaiLie {
             //之所以count>1才输出，是因为,递归进入下一层时进行重复打印上一层的数字序列
             if(count >1) {
                 counter ++;
-                if(counter == m) {
+                if(counter == global_m) {
                     System.out.println(Arrays.toString(num)
                             .replace("[","")
                             .replace(",","")
@@ -88,5 +113,6 @@ public class QuanPaiLie {
             num[offset] = temp;
         }
     }
+
 
 }
