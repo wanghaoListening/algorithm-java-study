@@ -34,11 +34,8 @@ public class NQueenProblem {
         //从第1行开始
         search(0);
     }
-
     /**
-     *
      * @param i
-     *
      * 行号
      */
     private static void search(int i){
@@ -52,7 +49,6 @@ public class NQueenProblem {
             System.out.println();
             return;
         }
-
         //index 为列号
         for(int index=0; index < N; index ++){
 
@@ -65,9 +61,7 @@ public class NQueenProblem {
         }
 
     }
-
     /**
-     *
      * @param i
      *      行号
      * @return
