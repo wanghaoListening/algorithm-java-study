@@ -10,5 +10,7 @@ package com.haothink.jzoffer;
  **/
 public class LongestIncreasingSubsequence {
 
+    public static void main(String[] args) {
 
+    }
 }
