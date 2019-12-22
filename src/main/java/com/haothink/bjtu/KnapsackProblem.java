@@ -17,7 +17,6 @@ package com.haothink.bjtu;
  **/
 public class KnapsackProblem {
 
-
     private static int n;//物品数量
 
     private static double c; //背包容量
@@ -66,9 +65,7 @@ public class KnapsackProblem {
             if(put[i]==1)
                 System.out.println(order[i]);
         }
-
     }
-
 
     //按单位价值排序
     private static void knapsack()
