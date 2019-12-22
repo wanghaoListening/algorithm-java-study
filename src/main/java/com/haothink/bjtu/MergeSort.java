@@ -6,7 +6,7 @@ import java.util.Arrays;
  * Created by wanghao on 2019-12-22
  * mail:wanghaotime@qq.com
  *
- * 合并排序，合并排序
+ * 合并排序，归并排序
  *
  * 思想：
  * 分治策略
