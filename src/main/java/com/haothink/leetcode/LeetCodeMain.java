@@ -1,7 +1,7 @@
 package com.haothink.leetcode;
 
 /**
- * Created by wanghao on 2021-01-10 mail:
+ * fast run leetcode
  **/
 public class LeetCodeMain {
 
