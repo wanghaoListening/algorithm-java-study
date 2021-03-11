@@ -1,4 +1,4 @@
-package com.haothink.leetcode;
+package com.haothink.leetcode.sliding_window;
 
 /**
  * Created by wanghao on 2021-03-10 mail

@@ -1,4 +1,4 @@
-package com.haothink.leetcode;
+package com.haothink.leetcode.sliding_window;
 
 import java.util.List;
 
