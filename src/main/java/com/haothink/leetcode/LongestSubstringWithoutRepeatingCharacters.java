@@ -45,23 +45,26 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
     char[] charList = str.toCharArray();
     StringBuilder stringBuilder = new StringBuilder(charList[0]+"");
-    int lengthOfSubstring = 1;
+    int startIndex = 0;
+    int endIndex = 1;
     int lengthOfLongestSubstring = 1;
 
     for(int i=1;i<charList.length;i++){
 
       if(stringBuilder.indexOf(charList[i]+"") == -1){
-        lengthOfSubstring ++;
+        endIndex ++;
 
       }else {
-        if(lengthOfSubstring > lengthOfLongestSubstring){
-          lengthOfLongestSubstring = lengthOfSubstring;
-        }
         stringBuilder = new StringBuilder(stringBuilder.substring(stringBuilder.indexOf(charList[i]+"")+1));
-        lengthOfSubstring = 1;
+        startIndex = endIndex - stringBuilder.length();
+        endIndex++;
+
+      }
+      if((endIndex-startIndex) > lengthOfLongestSubstring){
+        lengthOfLongestSubstring = (endIndex-startIndex);
       }
       stringBuilder.append(charList[i]+"");
     }
-    return lengthOfLongestSubstring >= lengthOfSubstring?lengthOfLongestSubstring:lengthOfSubstring;
+    return lengthOfLongestSubstring;
   }
 }
