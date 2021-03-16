@@ -56,9 +56,10 @@ public class MinimumWindowSubstring {
     int startIndex = charFlag.remove();
     for(int i=0;i<chs.length;i++){
 
-      if(tempStr.indexOf(chs[i]) != -1){
+      int currentIndex = tempStr.indexOf(chs[i]);
+      if(currentIndex != -1){
 
-        tempStr = tempStr.substring(0, tempStr.indexOf(chs[i])) + tempStr.substring(tempStr.indexOf(chs[i]) + 1);
+        tempStr = tempStr.substring(0, currentIndex) + tempStr.substring(currentIndex + 1);
 
       }
 
