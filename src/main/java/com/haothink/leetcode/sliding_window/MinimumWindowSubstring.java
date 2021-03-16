@@ -1,7 +1,8 @@
 package com.haothink.leetcode.sliding_window;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Created by wanghao on 2021-03-14 mail:
@@ -11,6 +12,9 @@ import java.util.List;
  *
  * "ADOBECODEBANC"
  * "ABC"
+ *
+ * 最终超时限制，后期待优化Time Limit Exceeded
+ *
  **/
 public class MinimumWindowSubstring {
 
@@ -18,7 +22,7 @@ public class MinimumWindowSubstring {
   public static void main(String[] args) {
 
     MinimumWindowSubstring minimumWindowSubstring = new MinimumWindowSubstring();
-    System.out.println(minimumWindowSubstring.minWindow("ADOBECODEBANC","ABC"));
+    System.out.println(minimumWindowSubstring.minWindow("ab","b"));
   }
 
 
@@ -30,11 +34,9 @@ public class MinimumWindowSubstring {
       return t;
     }
     char[] chs = s.toCharArray();
-    List<Integer> charFlag = new ArrayList<>();
+    Queue<Integer> charFlag = new LinkedList<>();
 
     String tempStr = t;
-    int startIndex = 0;
-
     int endIndex = 0;
 
     int minimumLengthOfWindow = -1;
@@ -46,16 +48,18 @@ public class MinimumWindowSubstring {
         charFlag.add(i);
       }
     }
+    if(charFlag.size() <=0){
 
+      return "";
+    }
+
+    int startIndex = charFlag.remove();
     for(int i=0;i<chs.length;i++){
 
       if(tempStr.indexOf(chs[i]) != -1){
 
         tempStr = tempStr.substring(0, tempStr.indexOf(chs[i])) + tempStr.substring(tempStr.indexOf(chs[i]) + 1);
 
-        if((t.length() - tempStr.length()) == 1){
-          startIndex = i;
-        }
       }
 
       if(("".equals(tempStr) || tempStr.length() == 0)){
@@ -63,13 +67,17 @@ public class MinimumWindowSubstring {
         if((minimumLengthOfWindow == -1)||(endIndex - startIndex) < minimumLengthOfWindow) {
           minimumLengthOfWindow = endIndex - startIndex;
           minimumWindowStr = s.substring(startIndex, endIndex+1);
-          tempStr = t;
+
+        }
+        tempStr = t;
+
+        if(charFlag.size() > 0) {
           //remove the first element
-          charFlag.remove(0);
           //next turn ,the i will add 1 ,so minus 1 firstly
-          i = charFlag.get(0)-1;
+          i = charFlag.remove();
           startIndex = i;
-          endIndex = i;
+          endIndex = i - 1;
+          i--;
         }
       }
 
