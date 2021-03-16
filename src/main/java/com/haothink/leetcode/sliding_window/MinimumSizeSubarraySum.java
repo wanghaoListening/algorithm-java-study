@@ -14,11 +14,42 @@ package com.haothink.leetcode.sliding_window;
 public class MinimumSizeSubarraySum {
 
 
+  public static void main(String[] args) {
+
+    int target = 7;
+    int[] nums = {2,3,1,2,4,3};
+    MinimumSizeSubarraySum minimumSizeSubarraySum = new MinimumSizeSubarraySum();
+    System.out.println(minimumSizeSubarraySum.minSubArrayLen(target,nums));
+  }
+
+
   public int minSubArrayLen(int target, int[] nums) {
 
 
+    int minimumSubarraySum = -1;
 
-    return 0;
+    int startIndex = 0;
+    int endIndex = 1;
+    int eleSum = nums[0];
+
+    while(endIndex < nums.length){
+
+      if(eleSum >= target){
+
+        if(((endIndex - startIndex) < minimumSubarraySum) || minimumSubarraySum == -1){
+
+          minimumSubarraySum = endIndex - startIndex;
+        }
+        startIndex ++;
+        endIndex = startIndex;
+        eleSum = nums[startIndex];
+      }else {
+        eleSum += nums[endIndex];
+        endIndex++;
+      }
+    }
+
+    return minimumSubarraySum;
 
   }
 }
