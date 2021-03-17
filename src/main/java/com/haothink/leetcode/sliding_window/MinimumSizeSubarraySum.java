@@ -25,27 +25,26 @@ public class MinimumSizeSubarraySum {
 
   public int minSubArrayLen(int target, int[] nums) {
 
-
-    int minimumSubarraySum = -1;
-
+    int minimumSubarraySum = 0;
     int startIndex = 0;
-    int endIndex = 1;
-    int eleSum = nums[0];
+    int endIndex = 0;
+    int eleSum = 0;
 
     while(endIndex < nums.length){
 
-      if(eleSum >= target){
+      if(eleSum < target){
+        eleSum += nums[endIndex];
+        endIndex++;
 
-        if(((endIndex - startIndex) < minimumSubarraySum) || minimumSubarraySum == -1){
+      }
+      if(eleSum >= target){
+        if(((endIndex - startIndex) < minimumSubarraySum) || minimumSubarraySum == 0){
 
           minimumSubarraySum = endIndex - startIndex;
         }
         startIndex ++;
         endIndex = startIndex;
-        eleSum = nums[startIndex];
-      }else {
-        eleSum += nums[endIndex];
-        endIndex++;
+        eleSum = 0;
       }
     }
 
