@@ -37,6 +37,7 @@ public class MinimumSizeSubarraySum {
         endIndex++;
 
       }
+      //should check eleSum >= target condition repeatedly after add nums[endIndex] to eleSum
       if(eleSum >= target){
         if(((endIndex - startIndex) < minimumSubarraySum) || minimumSubarraySum == 0){
 
