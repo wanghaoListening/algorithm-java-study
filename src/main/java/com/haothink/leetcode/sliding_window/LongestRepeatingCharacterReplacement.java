@@ -39,11 +39,18 @@ public class LongestRepeatingCharacterReplacement {
 
     char[] chs = s.toCharArray();
 
-    char currentCh = chs[0];
-    int startIndex = 1;
+    int startIndex = 0;
     int endIndex = startIndex;
     int modifyCount = 0;
     while (endIndex < chs.length){
+
+      if(modifyCount < k){
+
+        if(chs[startIndex] != chs[endIndex]){
+          modifyCount ++;
+        }
+        endIndex ++;
+      }
 
       if(modifyCount >= k){
         //the count of modify up to k limit
@@ -53,18 +60,9 @@ public class LongestRepeatingCharacterReplacement {
         }
         startIndex ++;
         endIndex = startIndex;
-        currentCh = chs[startIndex];
 
       }
 
-      if(modifyCount < k){
-
-        if(currentCh != chs[endIndex]){
-          modifyCount ++;
-        }
-        endIndex ++;
-
-      }
     }
 
     return longestRepeatingCharacter;
