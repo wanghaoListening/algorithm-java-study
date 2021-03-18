@@ -47,7 +47,7 @@ public class LongestRepeatingCharacterReplacement {
 
       if(modifyCount >= k){
         //the count of modify up to k limit
-        if(endIndex-startIndex > longestRepeatingCharacter){
+        if((endIndex-startIndex > longestRepeatingCharacter) || (longestRepeatingCharacter == 0)){
 
           longestRepeatingCharacter = endIndex-startIndex;
         }
