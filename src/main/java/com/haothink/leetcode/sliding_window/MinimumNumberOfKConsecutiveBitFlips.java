@@ -21,6 +21,8 @@ package com.haothink.leetcode.sliding_window;
  *
  * Solution: Greedy
  * From left most, if there is a 0, that bit must be flipped since the right ones won’t affect left ones.
+ *
+ * Time Limit Exceeded
  **/
 public class MinimumNumberOfKConsecutiveBitFlips {
 
@@ -28,19 +30,23 @@ public class MinimumNumberOfKConsecutiveBitFlips {
   public static void main(String[] args) {
 
     MinimumNumberOfKConsecutiveBitFlips numberOfKConsecutiveBitFlips = new MinimumNumberOfKConsecutiveBitFlips();
-    int[] A = {0,1,0};
-    int K = 1;
+    int[] A = {1,1,0};
+    int K = 2;
     System.out.println(numberOfKConsecutiveBitFlips.minKBitFlips(A,K));
   }
 
   public int minKBitFlips(int[] nums, int k) {
 
-
     int endIndex = 0;
     int count = 0;
-    while (endIndex < nums.length-k+1){
+    boolean flag = false;
+    while (endIndex < nums.length){
 
       if(nums[endIndex] == 0){
+        //
+        if(endIndex+k > nums.length){
+          return -1;
+        }
         //flip it and the next k-1 bit
         count++;
         nums[endIndex] = 1;
@@ -48,14 +54,14 @@ public class MinimumNumberOfKConsecutiveBitFlips {
         while (i < endIndex+k){
           nums[i] = nums[i] == 0?1:0;
           i++;
-
         }
+        flag = true;
       }else {
 
         endIndex++;
       }
     }
+    return flag?(count==0?-1:count):0;
 
-    return count;
   }
 }
