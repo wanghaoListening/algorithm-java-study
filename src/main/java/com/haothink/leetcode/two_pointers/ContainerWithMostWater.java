@@ -37,14 +37,27 @@ public class ContainerWithMostWater {
       int width = endIndex-startIndex;
 
       if(heightValue * width > maxArea){
-
         maxArea = heightValue*width;
 
+      }
+      if(height[startIndex] < height[endIndex]){
 
+        startIndex ++;
+      }else if(height[startIndex] > height[endIndex]){
+
+        endIndex --;
+      }else{
+        //height[startIndex] == height[endIndex]
+        //the bigger one of forward num will be moving
+        if(height[startIndex+1] >= height[endIndex-1]){
+          startIndex ++;
+        }else {
+          endIndex--;
+        }
       }
     }
 
-    return 0;
+    return maxArea;
   }
 
 }
