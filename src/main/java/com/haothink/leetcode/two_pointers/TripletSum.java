@@ -1,5 +1,6 @@
 package com.haothink.leetcode.two_pointers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +28,11 @@ public class TripletSum {
   }
 
   public List<List<Integer>> threeSum(int[] nums) {
+
+    if(nums.length <= 2){
+      //corner case
+      return new ArrayList<>();
+    }
 
     //sort nums
     Arrays.sort(nums);
