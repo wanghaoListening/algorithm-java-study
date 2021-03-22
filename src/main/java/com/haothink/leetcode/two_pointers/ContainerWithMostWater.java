@@ -20,7 +20,7 @@ public class ContainerWithMostWater {
 
     ContainerWithMostWater containerWithMostWater = new ContainerWithMostWater();
 
-    int[] height = {1,8,6,2,5,4,8,3,7};
+    int[] height = {1,1};
     System.out.println(containerWithMostWater.maxArea(height));
   }
 
@@ -30,7 +30,7 @@ public class ContainerWithMostWater {
     int startIndex = 0;
     int endIndex = height.length-1;
 
-    while (startIndex <= endIndex){
+    while (startIndex < endIndex){
 
       // take smaller value as height
       int heightValue = height[startIndex]>height[endIndex]?height[endIndex]:height[startIndex];
