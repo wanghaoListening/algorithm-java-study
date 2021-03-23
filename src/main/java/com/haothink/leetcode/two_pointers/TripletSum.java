@@ -14,6 +14,8 @@ import java.util.List;
  *
  *Input: nums = [-1,0,1,2,-1,-4]
  *Output: [[-1,-1,2],[-1,0,1]]
+ *
+ * a + b + c = 0 意味着三个数字必须有复数或者正数，或者三个数字全为0
  **/
 public class TripletSum {
 
@@ -33,6 +35,7 @@ public class TripletSum {
       //corner case
       return new ArrayList<>();
     }
+    List<List<Integer>> resultList = new ArrayList<>();
 
     //sort nums
     Arrays.sort(nums);
@@ -40,24 +43,37 @@ public class TripletSum {
     int startIndex = 0;
     int endIndex = nums.length-1;
 
-    while (startIndex < endIndex){
 
-      //fixed startIndex and endIndex position nums ,find another num to make nums[startIndex]+nums[endIndex]+nums[another] ==0
+    for(int i=0;i<nums.length;i++){
 
-      int diff = nums[startIndex] + nums[endIndex];
-
-      if(diff >= 0){
-        //from startIndex to endIndex
-
-      }else {
-        //from endIndex to startIndex
-
+      if(nums[i] > 0){
+        //skip out of the loop
+        break;
       }
+      startIndex = i+1;
+      while (startIndex < endIndex) {
+        int sum = nums[i] + nums[startIndex] + nums[endIndex];
+        if (sum == 0){
+          List<Integer> result = new ArrayList<>();
+          result.add(nums[i]);
+          result.add(nums[startIndex]);
+          result.add(nums[endIndex]);
+          resultList.add(result);
+          startIndex ++;
+          endIndex --;
+        }
+        if(sum < 0){
+          startIndex++;
+        }
 
+        if(sum > 0){
+          endIndex--;
+        }
+      }
 
     }
 
-    return null;
+    return resultList;
   }
 
 
