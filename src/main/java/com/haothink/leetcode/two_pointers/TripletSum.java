@@ -16,6 +16,16 @@ import java.util.List;
  *Output: [[-1,-1,2],[-1,0,1]]
  *
  * a + b + c = 0 意味着三个数字必须有复数或者正数，或者三个数字全为0
+ *
+ * [-2,0,0,2,2]
+ * Output
+ * [[-2,0,2],[-2,0,2]]
+ * Expected
+ * [[-2,0,2]]
+ *
+ * [-1,0,1,2,-1,-4,-2,-3,3,0,4]
+ *
+ * [[-4,0,4],[-4,1,3],[-3,-1,4],[-3,0,3],[-3,1,2],[-2,-1,3],[-2,0,2],[-1,-1,2],[-1,0,1]]
  **/
 public class TripletSum {
 
@@ -24,7 +34,7 @@ public class TripletSum {
 
     TripletSum tripletSum = new TripletSum();
 
-    int[] nums = {-1,0,1,2,-1,-4};
+    int[] nums = {-1,0,1,2,-1,-4,-2,-3,3,0,4};
 
     System.out.println(tripletSum.threeSum(nums));
   }
@@ -36,7 +46,6 @@ public class TripletSum {
       return new ArrayList<>();
     }
     List<List<Integer>> resultList = new ArrayList<>();
-
     //sort nums
     Arrays.sort(nums);
 
@@ -51,9 +60,20 @@ public class TripletSum {
         break;
       }
       startIndex = i+1;
+      endIndex = nums.length-1;
       while (startIndex < endIndex) {
+
         int sum = nums[i] + nums[startIndex] + nums[endIndex];
         if (sum == 0){
+          //check duplicate nums
+          if(!resultList.isEmpty()) {
+            List<Integer> tail = resultList.get(resultList.size() - 1);
+            if(tail.get(0) == nums[i] && tail.get(1) == nums[startIndex] && tail.get(2)==nums[endIndex]){
+              startIndex ++;
+              endIndex --;
+              continue;
+            }
+          }
           List<Integer> result = new ArrayList<>();
           result.add(nums[i]);
           result.add(nums[startIndex]);
