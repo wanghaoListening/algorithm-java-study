@@ -2,7 +2,9 @@ package com.haothink.leetcode.two_pointers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wanghao on 2021-03-22
@@ -26,6 +28,9 @@ import java.util.List;
  * [-1,0,1,2,-1,-4,-2,-3,3,0,4]
  *
  * [[-4,0,4],[-4,1,3],[-3,-1,4],[-3,0,3],[-3,1,2],[-2,-1,3],[-2,0,2],[-1,-1,2],[-1,0,1]]
+ *
+ *
+ * [-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]
  **/
 public class TripletSum {
 
@@ -34,7 +39,7 @@ public class TripletSum {
 
     TripletSum tripletSum = new TripletSum();
 
-    int[] nums = {-1,0,1,2,-1,-4,-2,-3,3,0,4};
+    int[] nums = {-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6};
 
     System.out.println(tripletSum.threeSum(nums));
   }
@@ -45,13 +50,13 @@ public class TripletSum {
       //corner case
       return new ArrayList<>();
     }
+    Map<String,Integer> uniqueFlagMap = new HashMap<>();
     List<List<Integer>> resultList = new ArrayList<>();
     //sort nums
     Arrays.sort(nums);
 
-    int startIndex = 0;
-    int endIndex = nums.length-1;
-
+    int startIndex;
+    int endIndex;
 
     for(int i=0;i<nums.length;i++){
 
@@ -67,8 +72,7 @@ public class TripletSum {
         if (sum == 0){
           //check duplicate nums
           if(!resultList.isEmpty()) {
-            List<Integer> tail = resultList.get(resultList.size() - 1);
-            if(tail.get(0) == nums[i] && tail.get(1) == nums[startIndex] && tail.get(2)==nums[endIndex]){
+            if(uniqueFlagMap.containsKey(nums[i]+""+nums[startIndex])){
               startIndex ++;
               endIndex --;
               continue;
@@ -79,6 +83,7 @@ public class TripletSum {
           result.add(nums[startIndex]);
           result.add(nums[endIndex]);
           resultList.add(result);
+          uniqueFlagMap.put(nums[i]+""+nums[startIndex],nums[endIndex]);
           startIndex ++;
           endIndex --;
         }
