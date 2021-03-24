@@ -22,8 +22,8 @@ public class TripletSumClosest {
 
     TripletSumClosest tripletSumClosest =new TripletSumClosest();
 
-    int[] nums = {-1,2,1,-4};
-    int target = 1;
+    int[] nums = {0,1,2};
+    int target = 3;
     System.out.println(tripletSumClosest.threeSumClosest(nums,target));
 
   }
@@ -31,9 +31,8 @@ public class TripletSumClosest {
 
   public int threeSumClosest(int[] nums, int target) {
 
-
     int closestNum = 0;
-
+    int diff = Integer.MAX_VALUE;
     //sort nums
     Arrays.sort(nums);
 
@@ -42,28 +41,25 @@ public class TripletSumClosest {
 
     for(int i=0;i<nums.length;i++){
 
-      if(nums[i] > 0){
-        //skip out of the loop
-        break;
-      }
       startIndex = i+1;
       endIndex = nums.length-1;
       while (startIndex < endIndex) {
-
         int sum = nums[i] + nums[startIndex] + nums[endIndex];
-        if (sum == 0){
 
-          return 0;
+        if(Math.abs(target-sum) < Math.abs(diff)){
+          diff = Math.abs(target-sum);
+          closestNum = sum;
         }
-        if(sum < 0){
+        if (sum == target){
+          return sum;
+        }
+        if(sum < target){
           startIndex++;
         }
-
-        if(sum > 0){
+        if(sum > target){
           endIndex--;
         }
       }
-
     }
 
     return closestNum;
