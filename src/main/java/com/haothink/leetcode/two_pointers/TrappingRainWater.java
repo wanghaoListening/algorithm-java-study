@@ -37,7 +37,7 @@ public class TrappingRainWater {
     int flagRight = right;
     int amountOfWater = 0;
 
-    while (left <= right){
+    while (left < right){
 
       if(height[left] >= height[right]){
 
@@ -46,7 +46,7 @@ public class TrappingRainWater {
           amountOfWater+=height[flagRight]-height[right-1];
         }else {
 
-          flagRight --;
+          flagRight = right-1;
         }
         right --;
       }else {
@@ -54,7 +54,7 @@ public class TrappingRainWater {
         if(height[flagLeft] > height[left+1]) {
           amountOfWater += height[flagLeft] - height[left+1];
         }else {
-          flagLeft ++;
+          flagLeft = left+1;
         }
         left ++;
       }
