@@ -30,13 +30,24 @@ public class SubarrayProductLessThanK {
 
 
     int count = 0;
-
+    int end = 0;
+    int product = 1;
     for(int i=0;i<nums.length;i++){
 
+      product = 1;
+      while (end <= i){
+        product = product * nums[end];
+        if(product < k){
+          count++;
+        }else {
+          break;
+        }
+        end ++;
+      }
 
     }
 
-    return 0;
+    return count;
   }
 
 }
