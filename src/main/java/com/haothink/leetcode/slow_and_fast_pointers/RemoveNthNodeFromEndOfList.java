@@ -1,5 +1,7 @@
 package com.haothink.leetcode.slow_and_fast_pointers;
 
+import java.util.Objects;
+
 /**
  * Created by wanghao on 2021-03-31 mail
  *
@@ -14,12 +16,32 @@ public class RemoveNthNodeFromEndOfList {
 
   public ListNode removeNthFromEnd(ListNode head, int n) {
 
-    //create double pointer
-    ListNode before;
-    ListNode after;
 
+    if(Objects.isNull(head) || Objects.isNull(head.next)){
 
-    return null;
+      return null;
+    }
+    //create double pointer,make before pointer point n node
+    ListNode before = head;
+    ListNode after = head;
+
+    for(int i=0;i<n+1;i++){
+
+      if(Objects.isNull(before)){
+
+        return head.next;
+      }
+      before = before.next;
+    }
+    while (Objects.nonNull(before)){
+
+      before = before.next;
+      after = after.next;
+    }
+    //remove one which after pointer point the next
+    after.next = after.next.next;
+
+    return head;
   }
 
 
