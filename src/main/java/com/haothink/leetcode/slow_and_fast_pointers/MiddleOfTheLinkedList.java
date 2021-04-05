@@ -1,5 +1,7 @@
 package com.haothink.leetcode.slow_and_fast_pointers;
 
+import java.util.Objects;
+
 /**
  * Created by wanghao on 2021-04-02
  * Given a non-empty, singly linked list with head node head, return a middle node of linked list.
@@ -18,11 +20,40 @@ public class MiddleOfTheLinkedList {
 
   public static void main(String[] args) {
 
+    ListNode one = new ListNode(1);
+    ListNode two = new ListNode(2);
+    ListNode three = new ListNode(3);
+    ListNode four = new ListNode(4);
+
+
+    one.next = two;
+    two.next = three;
+    three.next = four;
+
+
+    MiddleOfTheLinkedList middleOfTheLinkedList = new MiddleOfTheLinkedList();
+    System.out.println(middleOfTheLinkedList.middleNode(one));
+
   }
 
   public ListNode middleNode(ListNode head) {
 
-    return null;
+    if(Objects.isNull(head.next)){
+
+      return head;
+    }
+
+    ListNode fast = head;
+    ListNode slow = head;
+
+    while (Objects.nonNull(fast) && Objects.nonNull(fast.next)){
+
+      fast = fast.next.next;
+      slow = slow.next;
+
+    }
+
+    return slow;
   }
 
   static class ListNode {
