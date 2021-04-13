@@ -1,5 +1,9 @@
 package com.haothink.leetcode.In_place_reverse_list;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  * Created by wanghao on 2021-04-10
  *
@@ -12,6 +16,11 @@ package com.haothink.leetcode.In_place_reverse_list;
  *
  * Could you solve the problem in O(1) extra memory space?
  * You may not alter the values in the list's nodes, only nodes itself may be changed.
+ *
+ * 如果节点数不是k的倍数，则忽略节点，
+ *
+ * Input: head = [1,2,3,4,5], k = 2
+ * Output: [2,1,4,3,5]
  **/
 public class ReverseNodesInkGroup {
 
@@ -23,7 +32,54 @@ public class ReverseNodesInkGroup {
   public ListNode reverseKGroup(ListNode head, int k) {
 
 
-    return null;
+    if(Objects.isNull(head) || Objects.isNull(head.next)){
+
+      return head;
+    }
+    //pre calc linked length
+    int count = 0;
+    ListNode pointer = head;
+    while (Objects.nonNull(pointer)){
+      count ++;
+      pointer = pointer.next;
+    }
+
+    int group = count/k;
+
+    List<ListNode> stack = new LinkedList<>();
+    ListNode currNode = null;
+    ListNode connectNode = head;
+    ListNode newHead = null;
+    stack.add(head);
+    pointer = head.next;
+
+    while(Objects.nonNull(pointer)){
+      currNode = pointer;
+      pointer = pointer.next;
+      if(group == 0){
+        connectNode.next = currNode;
+        return newHead;
+      }
+      if(stack.size() >= k){
+        if(connectNode == head){
+          newHead = stack.get(stack.size()-1);
+        }
+        group --;
+        //connect two group
+        connectNode.next = stack.get(stack.size()-1);
+        connectNode = stack.get(0);
+        stack.clear();
+      }else if(stack.size() == 0){
+
+        stack.add(currNode);
+
+      }else {
+        currNode.next = stack.get(stack.size()-1);
+        stack.add(currNode);
+      }
+
+    }
+    return newHead;
   }
 
   public static class ListNode {
