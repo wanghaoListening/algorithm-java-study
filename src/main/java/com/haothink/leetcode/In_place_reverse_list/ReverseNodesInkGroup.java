@@ -1,5 +1,6 @@
 package com.haothink.leetcode.In_place_reverse_list;
 
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -27,6 +28,22 @@ public class ReverseNodesInkGroup {
 
   public static void main(String[] args) {
 
+
+    ListNode one = new ListNode(1);
+    ListNode two = new ListNode(2);
+    ListNode three = new ListNode(3);
+    ListNode four = new ListNode(4);
+    ListNode five = new ListNode(5);
+
+
+    one.next = two;
+    two.next = three;
+    three.next = four;
+    four.next = five;
+
+    int k = 3;
+    ReverseNodesInkGroup reverseNodesInkGroup = new ReverseNodesInkGroup();
+    System.out.println(reverseNodesInkGroup.reverseKGroup(one,k));
   }
 
   public ListNode reverseKGroup(ListNode head, int k) {
@@ -45,39 +62,38 @@ public class ReverseNodesInkGroup {
     }
 
     int group = count/k;
-
+    int standard = group;
     List<ListNode> stack = new LinkedList<>();
-    ListNode currNode = null;
+    ListNode currNode;
     ListNode connectNode = head;
     ListNode newHead = null;
-    stack.add(head);
-    pointer = head.next;
-
+    pointer = head;
     while(Objects.nonNull(pointer)){
       currNode = pointer;
       pointer = pointer.next;
+
       if(group == 0){
         connectNode.next = currNode;
         return newHead;
       }
+      if(stack.size() > 0) {
+        currNode.next = stack.get(stack.size()-1);
+      }else {
+        currNode.next = null;
+      }
+      stack.add(currNode);
       if(stack.size() >= k){
-        if(connectNode == head){
+        if(standard == group){
           newHead = stack.get(stack.size()-1);
         }
-        group --;
         //connect two group
-        connectNode.next = stack.get(stack.size()-1);
+        if(group < standard) {
+          connectNode.next = stack.get(stack.size() - 1);
+        }
         connectNode = stack.get(0);
         stack.clear();
-      }else if(stack.size() == 0){
-
-        stack.add(currNode);
-
-      }else {
-        currNode.next = stack.get(stack.size()-1);
-        stack.add(currNode);
+        group --;
       }
-
     }
     return newHead;
   }
