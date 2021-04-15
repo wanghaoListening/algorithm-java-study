@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * Created by wanghao on 2021-04-15
+ * Given the head of a singly linked list, reverse the list, and return the reversed list.
  **/
 public class ReverseLinkedList {
 
