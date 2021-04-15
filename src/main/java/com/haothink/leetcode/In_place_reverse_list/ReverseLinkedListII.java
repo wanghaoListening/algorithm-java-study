@@ -1,6 +1,9 @@
 package com.haothink.leetcode.In_place_reverse_list;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
+import javax.crypto.interfaces.PBEKey;
 
 /**
  * Created by wanghao on 2021-04-13
@@ -19,15 +22,14 @@ public class ReverseLinkedListII {
     ListNode one = new ListNode(1);
     ListNode two = new ListNode(2);
     ListNode three = new ListNode(3);
-    /*ListNode four = new ListNode(4);
-    ListNode five = new ListNode(5);*/
+    ListNode four = new ListNode(4);
+    /*ListNode five = new ListNode(5);*/
 
 
     one.next = two;
-
     two.next = three;
-   /* three.next = four;
-    four.next = five;
+    three.next = four;
+    /*four.next = five;
    */
 
     System.out.println(reverseLinkedListII.reverseBetween(one,1,3));
@@ -36,48 +38,50 @@ public class ReverseLinkedListII {
 
   public ListNode reverseBetween(ListNode head, int left, int right) {
 
+    List<ListNode> stack = new LinkedList<>();
     int count = 0;
     ListNode pointer = head;
-    ListNode leftHead = null;
+
+    ListNode leftHead = head;
+
     ListNode currNode = null;
+
     ListNode preNode = null;
 
     while (Objects.nonNull(pointer)){
 
-      count++;
-      if(count == left-1){
-        leftHead = pointer;
-      }
-      if(count == left){
-        preNode = pointer;
-      }
-
-      if(count >= left+1 && count <=right){
-
-        currNode = pointer;
-        pointer = pointer.next;
-        if(Objects.nonNull(leftHead)) {
-          preNode.next = currNode.next;
-          currNode.next = leftHead.next;
-          leftHead.next = currNode;
-        }else {
-          //prove left is vary left index ,so preNode.next = null
-          if(count == 2){
-            preNode.next = null;
-          }
-          currNode.next = preNode;
-          preNode = currNode;
-          head = currNode;
-        }
-        continue;
-      }
-      if(count > right){
-
-        break;
-      }
+      count ++;
+      currNode = pointer;
       pointer = pointer.next;
+      if(count == left-1){
+        preNode = currNode;
+      }
+      if(count >= left && count <= right){
+
+        if(stack.size() <= 0){
+
+          stack.add(currNode);
+        }else {
+          stack.get(stack.size()-1).next = currNode.next;
+          currNode.next = stack.get(0);
+          stack.add(0,currNode);
+        }
+
+      }
+
+      if(count >= right){
+
+        if(left == 1){
+          return stack.get(0);
+        }else {
+
+          preNode.next = stack.get(0);
+          return leftHead;
+        }
+      }
+
     }
-    return head;
+    return leftHead;
   }
 
   public static class ListNode {
