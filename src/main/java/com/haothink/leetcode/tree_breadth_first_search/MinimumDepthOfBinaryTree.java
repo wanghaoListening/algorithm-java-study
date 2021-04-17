@@ -1,15 +1,21 @@
 package com.haothink.leetcode.tree_breadth_first_search;
 
-import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.LinkedList;
-import java.util.List;
+
 import java.util.Objects;
 
 /**
  * Created by wanghao on 2021-04-17
+ *
+ * Given a binary tree, find its minimum depth.
+ *
+ * The minimum depth is the number of nodes along the shortest path from the
+ * root node down to the nearest leaf node.
+ *
+ * Note: A leaf is a node with no children.
  **/
-public class BinaryTreeLevelOrderTraversalII {
+public class MinimumDepthOfBinaryTree {
 
 
   public static void main(String[] args) {
@@ -17,27 +23,30 @@ public class BinaryTreeLevelOrderTraversalII {
   }
 
 
-  public List<List<Integer>> levelOrderBottom(TreeNode root) {
+
+  public int minDepth(TreeNode root) {
 
 
-    //使用队列进行广度优先遍历
-    List<List<Integer>> result = new ArrayList<>();
     LinkedList<TreeNode> queue = new LinkedList<>();
 
     if(Objects.isNull(root)){
 
-      return Collections.emptyList();
+      return 0;
     }
+    //使用队列进行广度优先遍历
     queue.add(root);
-
+    int level = 0;
     while (!queue.isEmpty()){
 
       int queueSize = queue.size();
-      List<Integer> list = new ArrayList<>();
+      level++;
       for(int i=0;i<queueSize;i++) {
-          //add
-          TreeNode treeNode = queue.removeFirst();
-          list.add(treeNode.val);
+        //add
+        TreeNode treeNode = queue.removeFirst();
+
+        if(Objects.isNull(treeNode.left)&& Objects.isNull(treeNode.right)){
+          return level;
+        }else {
 
           if (Objects.nonNull(treeNode.left)) {
             queue.add(treeNode.left);
@@ -45,14 +54,13 @@ public class BinaryTreeLevelOrderTraversalII {
           if (Objects.nonNull(treeNode.right)) {
             queue.add(treeNode.right);
           }
+        }
 
       }
-      result.add(0,list);
+
     }
-    return result;
-
+    return level;
   }
-
 
 
   public static class TreeNode {
@@ -67,5 +75,4 @@ public class BinaryTreeLevelOrderTraversalII {
       this.right = right;
     }
   }
-
 }
