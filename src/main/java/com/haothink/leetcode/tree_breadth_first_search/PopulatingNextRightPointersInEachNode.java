@@ -55,13 +55,9 @@ public class PopulatingNextRightPointersInEachNode {
         }else {
           node.next = null;
         }
+        queue.add(node.left);
+        queue.add(node.right);
 
-        if (Objects.nonNull(node.left)) {
-          queue.add(node.left);
-        }
-        if (Objects.nonNull(node.right)) {
-          queue.add(node.right);
-        }
       }
     }
     return root;
