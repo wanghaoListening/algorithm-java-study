@@ -32,16 +32,16 @@ public class ImplementTrie {
   public static void main(String[] args) {
 
 
-    Trie obj = new Trie();
+    Trie trie = new Trie();
 
-    obj.insert("apple");
-    System.out.println(obj);
+    //trie.insert("apple");
+    System.out.println(trie.search("a"));   // return True
+    System.out.println(trie.search("app"));     // return False
+    System.out.println(trie.startsWith("app")); // return True
+    trie.insert("app");
+    System.out.println(trie.search("app"));     // return True
 
-    boolean searchResult = obj.search("apple");
-    System.out.println(searchResult);
 
-    boolean startResult = obj.startsWith("app");
-    System.out.println(startResult);
   }
 
 
@@ -66,7 +66,7 @@ public class ImplementTrie {
     private void dfsInsert(String word,TreeNode treeNode){
 
       if(word == null || word.length() <=0){
-
+        treeNode.isWord = true;
         return;
       }
       char ch = word.charAt(0);
@@ -97,11 +97,15 @@ public class ImplementTrie {
         return false;
       }
 
+      if(Objects.isNull(treeNode)){
+
+        return false;
+      }
       // get first ch
       char ch = word.charAt(0);
       if(word.length() == 1 && ch == treeNode.val){
 
-        return treeNode.treeNodeMap.isEmpty();
+        return treeNode.treeNodeMap.isEmpty() || treeNode.isWord;
       }
 
       String tailStr = word.substring(1);
@@ -130,6 +134,10 @@ public class ImplementTrie {
 
       // get first ch
       char ch = prefix.charAt(0);
+      if(Objects.isNull(treeNode)){
+
+        return false;
+      }
       if(prefix.length() == 1 && ch == treeNode.val){
 
         return true;
@@ -153,6 +161,7 @@ public class ImplementTrie {
 
     class TreeNode {
       Character val;
+      boolean isWord = false;
       Map<Character,TreeNode> treeNodeMap;
 
       TreeNode() {
