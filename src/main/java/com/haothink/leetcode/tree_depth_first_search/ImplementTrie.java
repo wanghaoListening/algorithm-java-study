@@ -29,10 +29,24 @@ import java.util.Objects;
 public class ImplementTrie {
 
 
+  public static void main(String[] args) {
+
+
+    Trie obj = new Trie();
+
+    obj.insert("apple");
+    System.out.println(obj);
+
+    boolean searchResult = obj.search("apple");
+    System.out.println(searchResult);
+
+    boolean startResult = obj.startsWith("app");
+    System.out.println(startResult);
+  }
 
 
 
-  class Trie {
+  static class Trie {
 
     private TreeNode root;
 
@@ -51,15 +65,20 @@ public class ImplementTrie {
 
     private void dfsInsert(String word,TreeNode treeNode){
 
+      if(word == null || word.length() <=0){
+
+        return;
+      }
       char ch = word.charAt(0);
+      String tailStr = word.substring(1);
       TreeNode childNode = treeNode.treeNodeMap.get(ch);
       if(Objects.nonNull(childNode)){
-        String tailStr = word.substring(1);
+
         dfsInsert(tailStr,childNode);
       }else {
         TreeNode newChildNode = new TreeNode(ch);
         treeNode.treeNodeMap.put(ch, newChildNode);
-
+        dfsInsert(tailStr,newChildNode);
       }
 
     }
@@ -68,7 +87,7 @@ public class ImplementTrie {
     public boolean search(String word) {
 
 
-      return dfsFullSearch(word,root);
+      return dfsFullSearch(word,root.treeNodeMap.get(word.charAt(0)));
     }
 
     private boolean dfsFullSearch(String word,TreeNode treeNode){
@@ -104,8 +123,7 @@ public class ImplementTrie {
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
 
-
-      return dfsPrefixSearch(prefix,root);
+      return dfsPrefixSearch(prefix,root.treeNodeMap.get(prefix.charAt(0)));
     }
 
     private boolean dfsPrefixSearch(String prefix,TreeNode treeNode){
@@ -134,13 +152,13 @@ public class ImplementTrie {
 
 
     class TreeNode {
-      int val;
+      Character val;
       Map<Character,TreeNode> treeNodeMap;
 
       TreeNode() {
         treeNodeMap = new HashMap<>();
       }
-      TreeNode(int val) {
+      TreeNode(char val) {
         this.val = val;
         treeNodeMap = new HashMap<>();
       }
