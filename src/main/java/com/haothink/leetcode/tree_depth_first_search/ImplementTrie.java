@@ -99,9 +99,9 @@ public class ImplementTrie {
 
       // get first ch
       char ch = word.charAt(0);
-      if(word.length() == 1 && ch == treeNode.val && treeNode.treeNodeMap.isEmpty()){
+      if(word.length() == 1 && ch == treeNode.val){
 
-        return true;
+        return treeNode.treeNodeMap.isEmpty();
       }
 
       String tailStr = word.substring(1);
@@ -144,7 +144,7 @@ public class ImplementTrie {
 
           return false;
         }
-        return dfsFullSearch(tailStr,childNode);
+        return dfsPrefixSearch(tailStr,childNode);
       }
       return false;
     }
