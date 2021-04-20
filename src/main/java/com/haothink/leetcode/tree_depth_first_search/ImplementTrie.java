@@ -46,6 +46,22 @@ public class ImplementTrie {
     public void insert(String word) {
 
 
+      dfsInsert(word,root);
+    }
+
+    private void dfsInsert(String word,TreeNode treeNode){
+
+      char ch = word.charAt(0);
+      TreeNode childNode = treeNode.treeNodeMap.get(ch);
+      if(Objects.nonNull(childNode)){
+        String tailStr = word.substring(1);
+        dfsInsert(tailStr,childNode);
+      }else {
+        TreeNode newChildNode = new TreeNode(ch);
+        treeNode.treeNodeMap.put(ch, newChildNode);
+
+      }
+
     }
 
     /** Returns if the word is in the trie. */
