@@ -11,6 +11,8 @@ package com.haothink.leetcode.tree_depth_first_search;
  * Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
  * Output: 6
  * Explanation: The LCA of nodes 2 and 8 is 6.
+ *
+ * based on Binary Search Tree feature ,left child ele < right child ele
  **/
 public class LowestCommonAncestorOfABinarySearchTree {
 
@@ -21,17 +23,36 @@ public class LowestCommonAncestorOfABinarySearchTree {
 
   public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
+    if(p.val < root.val && q.val > root.val){
 
+      return root;
+    }
+
+    if(p.val > root.val && q.val < root.val){
+
+      return root;
+    }
+
+    if(p.val == root.val ){
+
+      return p;
+    }
+    if(q.val == root.val){
+      return q;
+    }
+
+    if(p.val < root.val && q.val < root.val){
+
+      return lowestCommonAncestor(root.left,p,q);
+    }
+
+    if(p.val > root.val && q.val > root.val){
+
+      return lowestCommonAncestor(root.right,p,q);
+    }
     return null;
   }
 
-  public TreeNode dfsLowestCommonAncestor(TreeNode root, TreeNode commonAncestor, TreeNode p, TreeNode q) {
-
-
-    return null;
-
-
-  }
 
 
   public class TreeNode {
