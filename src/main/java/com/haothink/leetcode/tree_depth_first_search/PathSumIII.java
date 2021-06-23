@@ -1,5 +1,6 @@
 package com.haothink.leetcode.tree_depth_first_search;
 
+
 import java.util.Objects;
 
 /**
@@ -15,26 +16,48 @@ import java.util.Objects;
  * Output: 3
  * Explanation: The paths that sum to 8 are shown.
  *
+ * medium 重点关注
+ *
  **/
 public class PathSumIII {
 
 
+
+
   public static void main(String[] args) {
 
+
   }
+
 
 
   public int pathSum(TreeNode root, int targetSum) {
 
+    if(Objects.isNull(root)){
+      return 0;
+    }
 
-    return 0;
+    return dfsPathSum(root,targetSum) + pathSum(root.left,targetSum) + pathSum(root.right,targetSum);
   }
 
-  public int dfsPathSum(TreeNode root, int targetSum, int currentSum){
+  public int dfsPathSum(TreeNode root, int targetSum){
 
 
+    int sum = 0;
 
-    return 0;
+    if(Objects.isNull(root)){
+
+      return sum;
+    }
+
+    if(targetSum == root.val){
+
+      sum++;
+    }
+
+    sum += dfsPathSum(root.left,targetSum-root.val);
+    sum += dfsPathSum(root.right,targetSum-root.val);
+    return sum;
   }
 
   public class TreeNode {
