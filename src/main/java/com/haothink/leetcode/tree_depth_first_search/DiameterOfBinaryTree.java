@@ -17,6 +17,7 @@ import java.util.Objects;
  * Explanation: 3is the length of the path [4,2,1,3] or [5,2,1,3].
  *
  * 求二叉树的直径
+ * 需要注意最长的path可能不经过根节点
  * 由二叉树的特性得，二叉树的直径为左右子数edges之和
  **/
 public class DiameterOfBinaryTree {
