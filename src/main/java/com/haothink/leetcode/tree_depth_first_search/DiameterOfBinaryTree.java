@@ -25,21 +25,26 @@ public class DiameterOfBinaryTree {
 
   public static void main(String[] args) {
 
+    TreeNode root = new TreeNode(1);
+    TreeNode left = new TreeNode(2);
+
+    root.left = left;
+
+    DiameterOfBinaryTree diameterOfBinaryTree = new DiameterOfBinaryTree();
+
+    int diameter = diameterOfBinaryTree.diameterOfBinaryTree(root);
+    System.out.println(diameter);
   }
+
+  /**
+   * leetcode 当中用static会出错，需要用实例变量
+   */
+  private static int diameter = 0;
 
   public int diameterOfBinaryTree(TreeNode root) {
 
-    if(Objects.isNull(root)){
-
-      return 0;
-    }
-
-    if(Objects.isNull(root.left) && Objects.isNull(root.right)){
-
-      return 0;
-    }
-
-    return dfsHeightOfBinaryTree(root);
+    dfsHeightOfBinaryTree(root);
+    return diameter;
   }
 
   public int dfsHeightOfBinaryTree(TreeNode root){
@@ -49,17 +54,15 @@ public class DiameterOfBinaryTree {
       return 0;
     }
 
-    if(Objects.isNull(root.left) && Objects.isNull(root.right)){
-
-      return 1;
-    }
     int heightOfLeft =  dfsHeightOfBinaryTree(root.left);
     int heightOfRight = dfsHeightOfBinaryTree(root.right);
 
-    return heightOfLeft + heightOfRight;
+    diameter = Math.max(heightOfLeft+heightOfRight,diameter);
+
+    return Math.max(heightOfLeft,heightOfRight)+1;
   }
 
-  public class TreeNode {
+  public static class TreeNode {
 
     int val;
     TreeNode left;
