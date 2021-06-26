@@ -1,0 +1,21 @@
+package com.haothink.leetcode.subsets;
+
+import java.util.List;
+
+/**
+ * Created by wanghao on 2021-06-26
+ *
+ * Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could
+ * represent. Return the answer in any order.
+ *
+ * A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+ *
+ **/
+public class LetterCombinationsOfAPhoneNumber {
+
+
+  public List<String> letterCombinations(String digits) {
+
+    return null;
+  }
+}
