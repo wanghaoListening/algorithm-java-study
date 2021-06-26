@@ -1,5 +1,7 @@
 package com.haothink.leetcode.tree_depth_first_search;
 
+import java.util.Objects;
+
 /**
  * Created by wanghao on 2021-06-24
  *
@@ -24,9 +26,43 @@ public class MergeTwoBinaryTrees {
 
   public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 
+    if(Objects.isNull(root1) && Objects.isNull(root2)){
 
-    return null;
+      return null;
+    }
+
+    TreeNode newNode = new TreeNode();
+    TreeNode left = null;
+    TreeNode right = null;
+    if(Objects.nonNull(root1) && Objects.nonNull(root2)){
+
+
+      newNode.val = root1.val + root2.val;
+      left = mergeTrees(root1.left,root2.left);
+      right = mergeTrees(root1.right,root2.right);
+
+
+    }else {
+      if (Objects.nonNull(root1)) {
+
+        newNode.val = root1.val;
+        left = mergeTrees(root1.left, null);
+        right = mergeTrees(root1.right, null);
+
+      }
+      if (Objects.nonNull(root2)) {
+        newNode.val = root2.val;
+        left = mergeTrees(root2.left, null);
+        right = mergeTrees(root2.right, null);
+      }
+    }
+    newNode.left = left;
+    newNode.right = right;
+
+    return newNode;
   }
+
+
 
 
   static class TreeNode {
