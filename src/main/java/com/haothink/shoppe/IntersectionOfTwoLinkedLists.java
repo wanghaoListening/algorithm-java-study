@@ -25,21 +25,19 @@ public class IntersectionOfTwoLinkedLists {
 
   public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 
-
-    if(Objects.isNull(headA) || Objects.isNull(headB)){
+    if(Objects.isNull(headA) && Objects.isNull(headB)){
 
       return null;
     }
+    ListNode circleHeadA = headA;
+    ListNode circleHeadB = headB;
+    while (headA != headB){
 
-    while (true){
-
-      if(headA == headB){
-
-        return headA;
-      }
-
+      headA = Objects.isNull(headA)? circleHeadB : headA.next;
+      headB = Objects.isNull(headB)? circleHeadA : headB.next;
 
     }
+    return headA;
 
   }
 
