@@ -15,36 +15,43 @@ public class SortAnArray {
 
   public int[] sortArray(int[] nums) {
 
-    int benchEle = nums[0];
-
     int headPointer = 0;
     int tailPointer = nums.length-1;
 
+    quickSort(nums,headPointer,tailPointer);
 
-
-    return null;
+    return nums;
   }
 
-  public void quickSort(int[] nums){
+  public void quickSort(int[] nums,int headPointer,int tailPointer){
 
     int benchEle = nums[0];
 
-    int headPointer = 0;
-    int tailPointer = nums.length-1;
 
     while (headPointer < tailPointer){
 
-      if(nums[tailPointer] > benchEle){
-
+      if(nums[tailPointer] >= benchEle){
         tailPointer--;
         continue;
       }
-      if(nums[headPointer] < benchEle){
+      if(nums[tailPointer] < benchEle){
+        nums[headPointer] = nums[tailPointer];
+        headPointer++;
+        continue;
+      }
+      if(nums[headPointer] <= benchEle){
 
         headPointer++;
         continue;
       }
-
+      if(nums[headPointer] > benchEle){
+        nums[tailPointer] = nums[headPointer];
+        tailPointer--;
+      }
     }
+    //左边
+    quickSort(nums,0,headPointer);
+    //右边
+    quickSort(nums,tailPointer,nums.length);
   }
 }
