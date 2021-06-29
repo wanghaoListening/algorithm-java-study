@@ -11,6 +11,8 @@ import java.util.Arrays;
  * Output: [1,2,3,5]
  *
  * quick sort
+ *
+ * Output Limit Exceeded
  **/
 public class SortAnArray {
 
@@ -39,6 +41,7 @@ public class SortAnArray {
     }
     //
     int benchEle = nums[headPointer];
+
     boolean tailMove = true;
     int currHeadPointer = headPointer;
     int currTailPointer = tailPointer;
@@ -72,4 +75,6 @@ public class SortAnArray {
     //右边
     quickSort(nums,currTailPointer+1,tailPointer);
   }
+
+
 }
