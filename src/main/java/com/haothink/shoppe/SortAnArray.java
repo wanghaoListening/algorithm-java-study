@@ -1,5 +1,7 @@
 package com.haothink.shoppe;
 
+import java.util.Arrays;
+
 /**
  * Created by wanghao on 2021-06-29 mail:hiwanghao@didiglobal.com
  *
@@ -13,6 +15,13 @@ package com.haothink.shoppe;
 public class SortAnArray {
 
 
+  public static void main(String[] args) {
+
+    SortAnArray sortAnArray = new SortAnArray();
+    int[] nums = {3,-1};
+    System.out.println(Arrays.toString(sortAnArray.sortArray(nums)));
+  }
+
   public int[] sortArray(int[] nums) {
 
     int headPointer = 0;
@@ -25,33 +34,42 @@ public class SortAnArray {
 
   public void quickSort(int[] nums,int headPointer,int tailPointer){
 
-    int benchEle = nums[0];
-
-
-    while (headPointer < tailPointer){
-
-      if(nums[tailPointer] >= benchEle){
-        tailPointer--;
-        continue;
-      }
-      if(nums[tailPointer] < benchEle){
-        nums[headPointer] = nums[tailPointer];
-        headPointer++;
-        continue;
-      }
-      if(nums[headPointer] <= benchEle){
-
-        headPointer++;
-        continue;
-      }
-      if(nums[headPointer] > benchEle){
-        nums[tailPointer] = nums[headPointer];
-        tailPointer--;
-      }
+    if(tailPointer - headPointer <= 0){
+      return;
     }
+    //
+    int benchEle = nums[headPointer];
+    boolean tailMove = true;
+    int currHeadPointer = headPointer;
+    int currTailPointer = tailPointer;
+
+    while (currHeadPointer < currTailPointer){
+
+      if(tailMove){
+        if(nums[currTailPointer] >= benchEle){
+          currTailPointer--;
+
+        }else {
+          nums[currHeadPointer] = nums[currTailPointer];
+          currHeadPointer++;
+          tailMove = false;
+        }
+      }else {
+        if(nums[currHeadPointer] <= benchEle){
+          currHeadPointer++;
+        }else {
+          nums[currTailPointer] = nums[currHeadPointer];
+          currTailPointer--;
+          tailMove = true;
+        }
+      }
+
+    }
+    nums[currHeadPointer] = benchEle;
+    System.out.println(Arrays.toString(nums));
     //左边
-    quickSort(nums,0,headPointer);
+    quickSort(nums,headPointer,currHeadPointer-1);
     //右边
-    quickSort(nums,tailPointer,nums.length);
+    quickSort(nums,currTailPointer+1,tailPointer);
   }
 }
