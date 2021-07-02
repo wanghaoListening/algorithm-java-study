@@ -15,6 +15,8 @@ import java.util.Observable;
  *
  * Input: strs = ["flower","flow","flight"]
  * Output: "fl"
+ *
+ * 是否需要字典数
  **/
 public class LongestCommonPrefix {
 
