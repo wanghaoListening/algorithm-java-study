@@ -64,7 +64,15 @@ public class LargestNumber {
           return 1;
         }
       }
-      return num1.length() - num2.length();
+      if(num1.length() == num2.length()) {
+
+        return 0;
+      }else if(num1.length() > minLength){
+
+        return num1.charAt(minLength) >= num1.charAt(0) ? -1 :1;
+      }else {
+        return num2.charAt(minLength) >= num2.charAt(0) ? 1 :-1;
+      }
     }
   }
 }
