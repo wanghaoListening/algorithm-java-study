@@ -1,8 +1,8 @@
 package com.haothink.shoppe;
 
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 /**
  * Created by wanghao on 2021-07-03
@@ -32,47 +32,25 @@ public class LargestNumber {
   //sort it and compose it
   public String largestNumber(int[] nums) {
 
-    Set<Integer> set = new TreeSet<>(new HighBitComparator());
-    for(Integer num : nums){
-      set.add(num);
+    String[] arr = new String[nums.length];
+    for(int i=0; i<nums.length; i++){
+      arr[i]=String.valueOf(nums[i]);
     }
+
+    Arrays.sort(arr, new Comparator<String>(){
+      public int compare(String a, String b){
+        return (b+a).compareTo(a+b);
+      }
+    });
     StringBuilder largestNumberStr = new StringBuilder();
-    for(Integer ele : set){
+    for(String ele : arr){
       largestNumberStr.append(ele);
     }
+    while(largestNumberStr.charAt(0)=='0'&&largestNumberStr.length()>1)
+      largestNumberStr.deleteCharAt(0);
     return largestNumberStr.toString();
   }
 
 
 
-  public class HighBitComparator implements Comparator<Integer> {
-
-    @Override
-    public int compare(Integer o1, Integer o2) {
-      String num1 = String.valueOf(o1);
-      String num2 = String.valueOf(o2);
-
-      int minLength = Math.min(num1.length(),num2.length());
-
-      for(int i=0;i<minLength;i++){
-
-        if(num1.charAt(i) > num2.charAt(i)){
-
-          return -1;
-        }else if(num1.charAt(i) < num2.charAt(i)){
-
-          return 1;
-        }
-      }
-      if(num1.length() == num2.length()) {
-
-        return 0;
-      }else if(num1.length() > minLength){
-
-        return num1.charAt(minLength) >= num1.charAt(0) ? -1 :1;
-      }else {
-        return num2.charAt(minLength) >= num2.charAt(0) ? 1 :-1;
-      }
-    }
-  }
 }
