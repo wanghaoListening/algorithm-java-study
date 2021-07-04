@@ -34,9 +34,9 @@ public class SpiralMatrix {
     int fromWToEEnd = matrix[0].length;
     int fromNToSStart = 1;
     int fromNToSEnd = matrix.length-1;
-    int fromEToWStart = matrix[0].length-1;
+    int fromEToWStart = matrix[0].length-2;
     int fromEToWEnd = 0;
-    int fromSToNStart = matrix.length-1;
+    int fromSToNStart = matrix.length-2;
     int fromSToNEnd = 2;
 
     while (results.size() < eleSum){
