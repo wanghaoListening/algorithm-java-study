@@ -13,6 +13,7 @@ leetcode200道低中难度的算法题。后期会针对相关公司算法面试
 
 #### leetcode
 主要包括leetcode 中的easy medium level题目，为了便于归纳总结以及记忆，算法根据解题策略进行了划分
+若想查询题目出自哪家公司访问：https://leetcode.jp/problems.php 地址
 
 jdk version :java8
 
