@@ -21,12 +21,32 @@ public class KthLargestElementInAnArray {
 
   public static void main(String[] args) {
 
+
+    int[] nums = {7,6,5,4,3,2,1};
+    int k = 2;
+    KthLargestElementInAnArray largestElementInAnArray = new KthLargestElementInAnArray();
+
+    System.out.println(largestElementInAnArray.findKthLargest(nums,k));
+
   }
 
   public int findKthLargest(int[] nums, int k) {
 
+    for(int i=0;i<k;i++){
 
-    return 0;
+      int initValueIndex = 0;
+      for(int j=1;j<nums.length-i;j++){
+
+        if(nums[initValueIndex] > nums[j]){
+          int temp = nums[j];
+          nums[j] = nums[initValueIndex];
+          nums[initValueIndex] = temp;
+
+        }
+        initValueIndex = j;
+      }
+    }
+    return nums[nums.length-k];
   }
 
 }
