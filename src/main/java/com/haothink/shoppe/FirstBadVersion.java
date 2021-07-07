@@ -22,15 +22,40 @@ package com.haothink.shoppe;
  * Then 4 is the first bad version.
  *
  *
+ * Time Limit Exceeded
+ *
  **/
 public class FirstBadVersion {
 
   public static void main(String[] args) {
 
+
   }
 
   public int firstBadVersion(int n) {
 
-    return 0;
+    int start = 1;
+    int end = n;
+    int middle = (start + end)/2;
+    while (start <= end){
+
+      boolean isBadVersion = isBadVersion(middle);
+      if(isBadVersion && (!isBadVersion(middle-1))){
+
+        return middle;
+      }else if(!isBadVersion){
+        start = middle +1;
+
+      }else {
+        end = middle -1;
+      }
+      middle = (start + end)/2;
+    }
+    return middle;
+  }
+
+  boolean isBadVersion(int version){
+
+    return true;
   }
 }
