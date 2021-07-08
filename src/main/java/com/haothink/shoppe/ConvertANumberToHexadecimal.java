@@ -28,7 +28,7 @@ public class ConvertANumberToHexadecimal {
     if(num==0){
       return "0";
     }
-    String hex=new String("0123456789abcdef");
+    String hex="0123456789abcdef";
     StringBuilder ans=new StringBuilder();
     while(num!=0 && ans.length()<8){
       ans.append(hex.charAt(num & 0xf));
