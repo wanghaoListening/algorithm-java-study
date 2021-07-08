@@ -20,13 +20,15 @@ import java.util.Map;
  *
  * Input: s = "()"
  * Output: true
+ * 本题是经典的Stack应用场景。遍历整个字符串，当遇到正括号时，将其插入进Stack，遇到反括号时，查看Stack的尾部是否是与之对应的正括号，如果是，
+ * 将Stack尾部正括号pop出栈，反之说明不是有效括号，直接返回false。
  **/
 public class ValidParentheses {
 
 
   public static void main(String[] args) {
 
-    String s = "()[]{}";
+    String s = "){";
 
     ValidParentheses validParentheses = new ValidParentheses();
     System.out.println(validParentheses.isValid(s));
@@ -36,9 +38,10 @@ public class ValidParentheses {
   public boolean isValid(String s) {
 
     Map<Character,Character> parenthesesMap = new HashMap<>();
-    parenthesesMap.put('(',')');
-    parenthesesMap.put('{','}');
-    parenthesesMap.put('[',']');
+
+    parenthesesMap.put(']','[');
+    parenthesesMap.put('}','{');
+    parenthesesMap.put(')','(');
 
     char[] chs = s.toCharArray();
 
@@ -49,21 +52,20 @@ public class ValidParentheses {
 
     Deque<Character> characterLinkedList = new LinkedList<>();
 
-    for(int i=0;i<chs.length/2;i++){
+    for(int i=0;i<chs.length;i++){
 
-      characterLinkedList.push(chs[i]);
+      if(parenthesesMap.containsKey(chs[i])){
+        //反括号
+        char ch = characterLinkedList.isEmpty()?' ':characterLinkedList.removeFirst();
+        if(ch != parenthesesMap.get(chs[i])){
+
+          return false;
+        }
+        continue;
+      }
+      characterLinkedList.addFirst(chs[i]);
     }
-
-    for(int i=chs.length/2;i<chs.length;i++){
-
-      Character ch = characterLinkedList.poll();
-
-
-
-    }
-
-
-    return true;
+    return characterLinkedList.isEmpty();
   }
 
 }
