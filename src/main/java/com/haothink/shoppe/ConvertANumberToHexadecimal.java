@@ -13,6 +13,7 @@ package com.haothink.shoppe;
  *
  * Input: num = 26
  * Output: "1a"
+ * 数字转化成16进制的规则
  **/
 public class ConvertANumberToHexadecimal {
 
@@ -24,7 +25,16 @@ public class ConvertANumberToHexadecimal {
   public String toHex(int num) {
 
 
-    return null;
+    if(num==0){
+      return "0";
+    }
+    String hex=new String("0123456789abcdef");
+    StringBuilder ans=new StringBuilder();
+    while(num!=0 && ans.length()<8){
+      ans.append(hex.charAt(num & 0xf));
+      num>>=4;
+    }
+    return  ans.reverse().toString();
   }
 
 }
