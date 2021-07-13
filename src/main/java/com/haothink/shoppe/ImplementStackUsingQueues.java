@@ -1,5 +1,8 @@
 package com.haothink.shoppe;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created by wanghao on 2021-07-12
  *
@@ -34,6 +37,8 @@ package com.haothink.shoppe;
  **/
 public class ImplementStackUsingQueues {
 
+  private Queue<Integer> q1 = new LinkedList<>();
+  private Queue<Integer> q2 = new LinkedList<>();
 
   public static void main(String[] args) {
 
@@ -47,25 +52,31 @@ public class ImplementStackUsingQueues {
 
   /** Push element x onto stack. */
   public void push(int x) {
-
+    while(q1.size() > 0) {
+      q2.add(q1.remove());
+    }
+    q1.add(x);
+    while(q2.size() > 0) {
+      q1.add(q2.remove());
+    }
   }
 
   /** Removes the element on top of the stack and returns that element. */
   public int pop() {
 
-    return 0;
+    return q1.remove();
   }
 
   /** Get the top element. */
   public int top() {
 
-    return 0;
+    return q1.peek();
   }
 
   /** Returns whether the stack is empty. */
   public boolean empty() {
 
-    return false;
+    return q1.size() == 0 && q2.size() == 0;
   }
 
 }
