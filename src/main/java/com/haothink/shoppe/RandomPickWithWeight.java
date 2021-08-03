@@ -1,7 +1,7 @@
 package com.haothink.shoppe;
 
 /**
- * Created by wanghao on 2021/8/2 mail:hiwanghao@didiglobal.com
+ * Created by wanghao on 2021/8/2 mail:hellotime@gmail.com
  *
  * You are given an array of positive integers w where w[i] describes the weight of ith index (0-indexed).
  *

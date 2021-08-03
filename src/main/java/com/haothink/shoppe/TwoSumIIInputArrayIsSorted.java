@@ -3,7 +3,7 @@ package com.haothink.shoppe;
 import java.util.Arrays;
 
 /**
- * Created by wanghao on 2021/7/30 mail:hiwanghao@didiglobal.com
+ * Created by wanghao on 2021/7/30 mail:hellotime@gmail.com
  *
  * Given an array of integers numbers that is already sorted in non-decreasing order,
  * find two numbers such that they add up to a specific target number.

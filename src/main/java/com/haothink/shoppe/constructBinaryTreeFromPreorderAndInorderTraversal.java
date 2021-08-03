@@ -2,7 +2,7 @@ package com.haothink.shoppe;
 
 
 /**
- * Created by wanghao on 2021/7/30 mail:hiwanghao@didiglobal.com
+ * Created by wanghao on 2021/7/30 mail:hellotime@gmail.com
  *
  * Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree
  * and inorder is the inorder traversal of the same tree, construct and return the binary tree.

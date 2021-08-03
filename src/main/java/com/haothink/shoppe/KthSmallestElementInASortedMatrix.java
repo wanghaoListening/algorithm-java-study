@@ -1,7 +1,7 @@
 package com.haothink.shoppe;
 
 /**
- * Created by wanghao on 2021/7/29 mail:hiwanghao@didiglobal.com
+ * Created by wanghao on 2021/7/29 mail:hellotime@gmail.com
  *
  * Given an n x n matrix where each of the rows and columns are sorted in ascending order, return the kth
  * smallest element in the matrix.

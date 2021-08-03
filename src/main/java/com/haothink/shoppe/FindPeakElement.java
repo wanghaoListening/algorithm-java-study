@@ -1,7 +1,7 @@
 package com.haothink.shoppe;
 
 /**
- * Created by wanghao on 2021/8/2 mail:hiwanghao@didiglobal.com
+ * Created by wanghao on 2021/8/2 mail:hellotime@gmail.com
  * A peak element is an element that is strictly greater than its neighbors.
  *
  * Given an integer array nums, find a peak element, and return its index. If the array contains

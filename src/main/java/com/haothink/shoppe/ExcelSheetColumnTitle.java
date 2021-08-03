@@ -1,7 +1,7 @@
 package com.haothink.shoppe;
 
 /**
- * Created by wanghao on 2021/8/2 mail:hiwanghao@didiglobal.com
+ * Created by wanghao on 2021/8/2 mail:hellotime@gmail.com
  *
  * Given an integer columnNumber, return its corresponding column title as it appears in an Excel sheet.
  *

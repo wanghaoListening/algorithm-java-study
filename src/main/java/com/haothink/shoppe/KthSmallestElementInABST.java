@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by wanghao on 2021/8/2 mail:hiwanghao@didiglobal.com
+ * Created by wanghao on 2021/8/2 mail:hellotime@gmail.com
  *
  * Given the root of a binary search tree, and an integer k, return the kth (1-indexed) smallest element in the tree.
  *

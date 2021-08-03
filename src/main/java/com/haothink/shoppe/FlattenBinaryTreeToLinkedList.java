@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Queue;
 
 /**
- * Created by wanghao on 2021/8/2 mail:hiwanghao@didiglobal.com
+ * Created by wanghao on 2021/8/2 mail:hellotime@gmail.com
  *
  * Given the root of a binary tree, flatten the tree into a "linked list":
  *
