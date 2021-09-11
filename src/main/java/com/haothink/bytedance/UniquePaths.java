@@ -19,7 +19,7 @@ package com.haothink.bytedance;
  * 1. Right -> Down -> Down
  * 2. Down -> Down -> Right
  * 3. Down -> Right -> Down
- * 
+ *
  * 动态规划
  **/
 public class UniquePaths {
