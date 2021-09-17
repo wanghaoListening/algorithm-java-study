@@ -27,10 +27,12 @@ import java.util.List;
  *
  * 4.如果等于0，再判断有没有重复元素。
  *
+ * 三指针方法
  **/
 public class ThreeSum {
 
   public List<List<Integer>> threeSum(int[] nums) {
+
 
     return null;
   }
