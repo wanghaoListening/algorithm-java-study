@@ -14,6 +14,8 @@ import java.util.Random;
  * int[] reset() Resets the array to its original configuration and returns it.
  * int[] shuffle() Returns a random shuffling of the array.
  * 所谓打乱，意思就是原先每个位置上的数字会随机变换到其他位置
+ *
+ * 洗牌算法，所以果断用高爷爷改造过的Fisher-Yates shuffle
  **/
 public class ShuffleAnArray {
 
