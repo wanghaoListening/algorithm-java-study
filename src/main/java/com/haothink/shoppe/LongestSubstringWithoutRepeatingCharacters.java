@@ -17,10 +17,13 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
   public static void main(String[] args) {
 
+    String str = "abcabcbb";
+
+    System.out.println(lengthOfLongestSubstring(str));
   }
 
 
-  public int lengthOfLongestSubstring(String s) {
+  public static int lengthOfLongestSubstring(String s) {
 
     Set<Character> set = new HashSet<>();
     int n = s.length(), left = 0, right = 0;
