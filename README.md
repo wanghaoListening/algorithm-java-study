@@ -1,4 +1,4 @@
-# algorithm-study-demo
+# algorithm-java-study
 
 此项目为本人平时刷算法题的一些demo,主要是剑指offer以及北交大硕士入学习题demo
 leetcode200道低中难度的算法题。后期会针对相关公司算法面试题总结(包括Shoppe,ByteDance,Amazon,tencent,microsoft)
