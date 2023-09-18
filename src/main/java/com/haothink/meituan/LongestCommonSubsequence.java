@@ -4,6 +4,7 @@ package com.haothink.meituan;
 //最长公共子串,采用dp
 public class LongestCommonSubsequence {
 
+
     public int longestCommonSubsequence(String text1, String text2) {
 
         if (text1== null || text2== null || "".equals(text1) || "".equals(text2)){
