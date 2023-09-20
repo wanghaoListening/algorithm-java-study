@@ -1,5 +1,7 @@
 package com.haothink.kuaishou;
 
+import java.math.BigInteger;
+
 /**
  * Created by wanghao on 2021/9/25
  *
@@ -13,5 +15,34 @@ package com.haothink.kuaishou;
  **/
 public class MultiplyStrings {
 
+    public static void main(String[] args) {
 
+        MultiplyStrings multiplyStrings = new MultiplyStrings();
+
+        System.out.println(multiplyStrings.multiply("123","456"));
+    }
+
+    public String multiply(String num1, String num2) {
+
+        if ("0".equals(num1) || "0".equals(num2)){
+            return "0";
+        }
+
+        long num = Long.parseLong(num1);
+        char[] chs2 = num2.toCharArray();
+        long result = 0;
+
+        long bit = 1;
+        for (int i = chs2.length-1; i >= 0; i--) {
+
+            long val = Integer.parseInt(String.valueOf(chs2[i]));
+            if (i == chs2.length-1){
+                result += val*num;
+            }else {
+                bit = bit*10;
+                result += val*bit*num;
+            }
+        }
+        return String.valueOf(result);
+    }
 }
