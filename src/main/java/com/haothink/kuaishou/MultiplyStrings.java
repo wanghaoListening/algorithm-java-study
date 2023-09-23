@@ -1,6 +1,5 @@
 package com.haothink.kuaishou;
 
-import java.math.BigInteger;
 
 /**
  * Created by wanghao on 2021/9/25
@@ -30,19 +29,45 @@ public class MultiplyStrings {
 
         long num = Long.parseLong(num1);
         char[] chs2 = num2.toCharArray();
-        long result = 0;
+        String result = "0";
 
         long bit = 1;
         for (int i = chs2.length-1; i >= 0; i--) {
 
             long val = Integer.parseInt(String.valueOf(chs2[i]));
             if (i == chs2.length-1){
-                result += val*num;
+                result = add(result,String.valueOf(val*num));
             }else {
                 bit = bit*10;
-                result += val*bit*num;
+                result = add(result,String.valueOf(val*bit*num));
             }
         }
-        return String.valueOf(result);
+        return result;
+    }
+
+    public String add(String num1, String num2){
+        if ("0".equals(num1)){
+            return num2;
+        }
+        if ("0".equals(num2)){
+            return num1;
+        }
+
+        //维护状态，表示是否需要进位
+        int bit = 0;
+        int index1 = num1.length()-1;
+        int index2 = num2.length()-1;
+        StringBuilder result = new StringBuilder();
+        while (index1 >= 0 || index2 >=0){
+            char ch1 = index1 >= 0?num1.charAt(index1):'0';
+            char ch2 = index2 >= 0?num2.charAt(index2):'0';
+            int sum = Integer.parseInt(String.valueOf(ch1)) + Integer.parseInt(String.valueOf(ch2)) + bit;
+
+            bit = sum / 10 > 0?1:0;
+            result.append(sum % 10);
+            index2 --;
+            index1 --;
+        }
+        return result.reverse().toString();
     }
 }
