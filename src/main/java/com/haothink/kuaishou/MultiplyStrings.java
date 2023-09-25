@@ -36,16 +36,16 @@ public class MultiplyStrings {
 
             long val = Integer.parseInt(String.valueOf(chs2[i]));
             if (i == chs2.length-1){
-                result = add(result,String.valueOf(val*num));
+                result = addStrings(result,String.valueOf(val*num));
             }else {
                 bit = bit*10;
-                result = add(result,String.valueOf(val*bit*num));
+                result = addStrings(result,String.valueOf(val*bit*num));
             }
         }
         return result;
     }
 
-    public String add(String num1, String num2){
+    public String addStrings(String num1, String num2){
         if ("0".equals(num1)){
             return num2;
         }
@@ -67,6 +67,9 @@ public class MultiplyStrings {
             result.append(sum % 10);
             index2 --;
             index1 --;
+        }
+        if (bit == 1){
+            result.append(1);
         }
         return result.reverse().toString();
     }
